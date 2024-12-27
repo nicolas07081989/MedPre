@@ -1,40 +1,41 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 /* Importa tus fuentes */
-@import url('https://fonts.cdnfonts.com/css/euclid-circular-a');
+@import url("https://fonts.cdnfonts.com/css/euclid-circular-a");
 
 /* Variables globales */
 :root {
   /* Tipografía */
-  --font-primary: 'Euclid Circular A', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-primary: "Euclid Circular A", -apple-system, BlinkMacSystemFont,
+    sans-serif;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
-  
+
   /* Tipografía - Tamaños */
-  --font-xs: 0.75rem;    /* 12px */
-  --font-sm: 0.875rem;   /* 14px */
-  --font-base: 1rem;     /* 16px */
-  --font-lg: 1.125rem;   /* 18px */
-  --font-xl: 1.25rem;    /* 20px */
-  --font-2xl: 1.5rem;    /* 24px */
-  --font-3xl: 2rem;      /* 32px */
-  --font-4xl: 2.5rem;    /* 40px */
-  --font-5xl: 3rem;      /* 48px */
-  --font-6xl: 3.75rem;   /* 60px */
+  --font-xs: 0.75rem; /* 12px */
+  --font-sm: 0.875rem; /* 14px */
+  --font-base: 1rem; /* 16px */
+  --font-lg: 1.125rem; /* 18px */
+  --font-xl: 1.25rem; /* 20px */
+  --font-2xl: 1.5rem; /* 24px */
+  --font-3xl: 2rem; /* 32px */
+  --font-4xl: 2.5rem; /* 40px */
+  --font-5xl: 3rem; /* 48px */
+  --font-6xl: 3.75rem; /* 60px */
 }
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    font-family: var(--font-primary);
-    line-height: 1.6;
-    color: var(--text-color);
+  font-family: var(--font-primary);
+  line-height: 1.6;
+  color: var(--text-color);
 }
