@@ -150,6 +150,13 @@
 								<span>medpre.ecuador@gmail.com</span>
 							</div>
 						</a>
+						<div class="contact-method">
+							<i class="fas fa-map-marker-alt"></i>
+							<div>
+								<h4>Ubicación</h4>
+								<span>Quito, Ecuador</span>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="contact-image">

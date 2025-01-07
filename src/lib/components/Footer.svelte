@@ -27,20 +27,20 @@
 			<h3>Contacto</h3>
 			<ul>
 				<li>
-					<a href="mailto:contacto@tuempresa.com">
+					<a href="mailto:medpre.ecuador@gmail.com">
 						<i class="fas fa-envelope"></i>
-						contacto@tuempresa.com
+						medpre.ecuador@gmail.com
 					</a>
 				</li>
 				<li>
-					<a href="tel:+123456789">
+					<a href="https://wa.me/593979136217">
 						<i class="fas fa-phone"></i>
-						+52 (123) 456-789
+						(+593) 97 913 6217
 					</a>
 				</li>
 				<li>
 					<i class="fas fa-map-marker-alt"></i>
-					Ciudad de México, México
+					Quito, Ecuador
 				</li>
 			</ul>
 		</div>

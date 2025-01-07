@@ -22,7 +22,7 @@
 		{
 			icon: 'location-dot',
 			title: 'Ubicación',
-			description: 'Guayaquil, Ecuador'
+			description: 'Quito, Ecuador'
 		}
 	];
 </script>
