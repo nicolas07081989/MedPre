@@ -1,618 +1,412 @@
 <script>
-  import { fly } from 'svelte/transition';
+	import { fade, fly } from 'svelte/transition';
 
-  const mainAdvantages = [
-    {
-      icon: "fas fa-dna",
-      title: "Tecnología Avanzada",
-      description: "Análisis molecular de última generación con precisión superior al 96%"
-    },
-    {
-      icon: "fas fa-clock",
-      title: "Resultados Rápidos",
-      description: "Entrega de resultados en menos de 48 horas tras recibir la muestra"
-    },
-    {
-      icon: "fas fa-shield-alt",
-      title: "Diagnóstico Preciso",
-      description: "Evita cirugías innecesarias en el 80% de los casos indeterminados"
-    }
-  ];
-
-  const comparisons = [
-    {
-      title: "Diagnóstico Tradicional",
-      features: [
-        "Resultados indeterminados frecuentes",
-        "Posibles cirugías innecesarias",
-        "Mayor tiempo de espera",
-        "Menor precisión diagnóstica",
-        "Múltiples procedimientos invasivos"
-      ],
-      isTraditional: true
-    },
-    {
-      title: "Diagnóstico Molecular",
-      features: [
-        "Resultados definitivos",
-        "Evita cirugías innecesarias",
-        "Resultados en 48 horas",
-        "96% de precisión",
-        "Un solo procedimiento"
-      ],
-      isTraditional: false
-    }
-  ];
-
-  const stats = [
-    {
-      number: "96%",
-      label: "Precisión",
-      icon: "fas fa-bullseye"
-    },
-    {
-      number: "80%",
-      label: "Cirugías Evitadas",
-      icon: "fas fa-user-shield"
-    },
-    {
-      number: "48h",
-      label: "Tiempo de Respuesta",
-      icon: "fas fa-clock"
-    }
-  ];
+	const ventajas = [
+		{
+			icon: 'vial',
+			title: 'Muestra Inicial',
+			description: 'Utilizamos la muestra de la primera punción, sin necesidad de procedimientos adicionales.'
+		},
+		{
+			icon: 'user-md',
+			title: 'Consulta Gratuita',
+			description: 'Asesoría sin costo con especialistas para interpretar tus resultados.'
+		},
+		{
+			icon: 'certificate',
+			title: 'Respaldo Internacional',
+			description: 'Avalado por consenso internacional y asociaciones médicas reconocidas.'
+		},
+		{
+			icon: 'clock',
+			title: 'Resultados Rápidos',
+			description: 'Entrega de resultados en menos de un mes.'
+		},
+		{
+			icon: 'chart-line',
+			title: 'Alta Precisión',
+			description: 'Reducción del 75% de cirugías innecesarias con un valor predictivo negativo del 96%.'
+		},
+		{
+			icon: 'shield-alt',
+			title: 'Confiabilidad',
+			description: 'Tecnología de última generación respaldada por estudios científicos.'
+		}
+	];
 </script>
 
-<div class="advantages-page">
-  <!-- Hero Section -->
-  <section class="hero-section">
-    <div class="hero-overlay">
-      <div class="container">
-        <div class="hero-content">
-          <h1>
-            <span class="highlight">Ventajas Únicas</span>
-            <span class="main-title">Diagnóstico de Precisión</span>
-          </h1>
-          <p>Descubra por qué somos líderes en diagnóstico molecular de tiroides</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<svelte:head>
+	<title>Ventajas - MedPre Ecuador</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</svelte:head>
 
-  <!-- Stats Section -->
-  <section class="stats-section">
-    <div class="container">
-      <div class="stats-grid">
-        {#each stats as stat}
-          <div class="stat-card" in:fly={{ y: 50, duration: 1000 }}>
-            <div class="stat-icon">
-              <i class={stat.icon}></i>
-            </div>
-            <span class="stat-number">{stat.number}</span>
-            <span class="stat-label">{stat.label}</span>
-          </div>
-        {/each}
-      </div>
-    </div>
-  </section>
+<main>
+	<!-- Hero Section -->
+	<section class="hero">
+		<div class="hero-background"></div>
+		<div class="hero-overlay"></div>
+		<div class="container">
+			<div class="hero-content" in:fade={{ duration: 1000 }}>
+				<h1>Nuestras Ventajas</h1>
+				<p class="hero-subtitle">
+					Descubre por qué MedPre es la mejor opción para tu diagnóstico molecular
+				</p>
+			</div>
+		</div>
+	</section>
 
-  <!-- Main Advantages -->
-  <section class="main-advantages">
-    <div class="container">
-      <h2 class="section-title">Nuestras Ventajas</h2>
-      <p class="section-subtitle">Tecnología y experiencia a su servicio</p>
-      
-      <div class="advantages-grid">
-        {#each mainAdvantages as advantage, i}
-          <div 
-            class="advantage-card"
-            in:fly={{ y: 50, duration: 1000, delay: i * 200 }}
-          >
-            <div class="advantage-icon">
-              <i class={advantage.icon}></i>
-            </div>
-            <h3>{advantage.title}</h3>
-            <p>{advantage.description}</p>
-          </div>
-        {/each}
-      </div>
-    </div>
-  </section>
+	<!-- Ventajas Grid -->
+	<section class="ventajas">
+		<div class="container">
+			<div class="ventajas-grid">
+				{#each ventajas as ventaja, index}
+					<div 
+						class="ventaja-card"
+						in:fly={{ y: 50, duration: 1000, delay: index * 200 }}
+					>
+						<div class="ventaja-icon">
+							<i class="fas fa-{ventaja.icon}"></i>
+						</div>
+						<h3>{ventaja.title}</h3>
+						<p>{ventaja.description}</p>
+					</div>
+				{/each}
+			</div>
+		</div>
+	</section>
 
-  <!-- Comparison Section -->
-  <section class="comparison-section">
-    <div class="container">
-      <h2 class="section-title">Comparativa de Métodos</h2>
-      <p class="section-subtitle">¿Por qué elegir el diagnóstico molecular?</p>
+	<!-- Estadísticas -->
+	<section class="stats">
+		<div class="container">
+			<h2>Resultados Comprobados</h2>
+			<div class="stats-grid">
+				<div class="stat-card">
+					<div class="stat-circle">
+						<span class="stat-value">96%</span>
+						<svg class="stat-ring">
+							<circle cx="60" cy="60" r="54"></circle>
+							<circle cx="60" cy="60" r="54" style="--percent: 96"></circle>
+						</svg>
+					</div>
+					<span class="stat-label">Precisión diagnóstica</span>
+				</div>
+				<div class="stat-card">
+					<div class="stat-circle">
+						<span class="stat-value">75%</span>
+						<svg class="stat-ring">
+							<circle cx="60" cy="60" r="54"></circle>
+							<circle cx="60" cy="60" r="54" style="--percent: 75"></circle>
+						</svg>
+					</div>
+					<span class="stat-label">Reducción de cirugías</span>
+				</div>
+			</div>
+		</div>
+	</section>
 
-      <div class="comparison-grid">
-        {#each comparisons as comparison}
-          <div class="comparison-card {comparison.isTraditional ? 'traditional' : 'molecular'}">
-            <div class="card-header">
-              <i class={comparison.isTraditional ? 'fas fa-hospital' : 'fas fa-dna'}></i>
-              <h3>{comparison.title}</h3>
-            </div>
-            <ul>
-              {#each comparison.features as feature}
-                <li>
-                  <i class={comparison.isTraditional ? 'fas fa-times' : 'fas fa-check'}></i>
-                  {feature}
-                </li>
-              {/each}
-            </ul>
-          </div>
-        {/each}
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="cta-section">
-    <div class="container">
-      <div class="cta-content">
-        <h2>Elija la Precisión</h2>
-        <p>Tome la mejor decisión para su salud con diagnóstico molecular</p>
-        <div class="cta-buttons">
-          <a href="/contacto" class="btn btn-primary">
-            <i class="fas fa-calendar-check"></i>
-            Agendar Consulta
-          </a>
-          <a href="tel:+59397913621" class="btn btn-outline">
-            <i class="fas fa-phone"></i>
-            Llamar Ahora
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
+	<!-- CTA Section -->
+	<section class="cta">
+		<div class="container">
+			<div class="cta-content">
+				<h2>¿Listo para comenzar?</h2>
+				<p>Contacta con nuestro equipo y descubre todos los beneficios</p>
+				<div class="cta-buttons">
+					<a href="https://wa.me/593979136217" class="btn btn-primary">
+						<i class="fab fa-whatsapp"></i>
+						WhatsApp (+593) 97 913 6217
+					</a>
+					<a href="mailto:medpre.ecuador@gmail.com" class="btn btn-outline">
+						<i class="fas fa-envelope"></i>
+						medpre.ecuador@gmail.com
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</main>
 
 <style>
-  .advantages-page {
-    background: var(--light-bg);
-  }
-
-  /* Hero Section */
-  .hero-section {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                      url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&q=80');
-    background-size: cover;
-    background-position: center;
-    height: 60vh;
-    position: relative;
-    color: var(--white);
-    margin-bottom: 0;
-  }
-
-  .hero-overlay {
-    background: var(--gradient-overlay);
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 0 1rem;
-  }
-
-  .hero-content {
-    max-width: 800px;
-    text-align: center;
-    margin: 0 auto;
-  }
-
-  .hero-content h1 {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  }
-
-  .hero-content .highlight {
-    display: block;
-    font-size: 2rem;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-    opacity: 0.9;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .hero-content .main-title {
-    display: block;
-    font-size: 3.5rem;
-    font-weight: 800;
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-  }
-
-  .hero-content p {
-    font-size: 1.25rem;
-    opacity: 0.9;
-    max-width: 600px;
-    margin: 0 auto 2rem;
-    line-height: 1.6;
-  }
-
-  /* Stats Section - Nueva sección */
-  .stats-section {
-    background: var(--white);
-    padding: 4rem 0;
-    margin-top: -100px;
-    position: relative;
-    z-index: 2;
-  }
-
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-  }
-
-  .stat-card {
-    background: var(--white);
-    padding: 2.5rem 2rem;
-    border-radius: 15px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease;
-  }
-
-  .stat-card:hover {
-    transform: translateY(-5px);
-  }
-
-  .stat-icon {
-    width: 70px;
-    height: 70px;
-    background: var(--light-bg);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1.5rem;
-  }
-
-  .stat-icon i {
-    font-size: 1.8rem;
-    color: var(--primary-color);
-  }
-
-  .stat-number {
-    display: block;
-    font-size: 2.8rem;
-    font-weight: 800;
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-  }
-
-  .stat-label {
-    color: var(--text-color);
-    font-size: 1.1rem;
-    font-weight: 500;
-  }
-
-  /* Main Advantages Section - Mejorado */
-  .main-advantages {
-    padding: 8rem 0;
-    background: var(--light-bg);
-    position: relative;
-  }
-
-  .section-title {
-    text-align: center;
-    font-size: 2.5rem;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-    font-weight: 700;
-  }
-
-  .section-subtitle {
-    text-align: center;
-    font-size: 1.2rem;
-    color: var(--text-color);
-    margin-bottom: 4rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    opacity: 0.8;
-  }
-
-  .advantages-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem;
-  }
-
-  .advantage-card {
-    background: var(--white);
-    padding: 3rem 2rem;
-    border-radius: 20px;
-    text-align: center;
-    transition: all 0.3s ease;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .advantage-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: var(--primary-color);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .advantage-card:hover::before {
-    opacity: 1;
-  }
-
-  .advantage-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  }
-
-  .advantage-icon {
-    width: 100px;
-    height: 100px;
-    background: var(--white);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 2rem;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-  }
-
-  .advantage-icon i {
-    font-size: 2.5rem;
-    color: var(--primary-color);
-  }
-
-  .advantage-card h3 {
-    color: var(--primary-color);
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .advantage-card p {
-    color: var(--text-color);
-    line-height: 1.6;
-  }
-
-  /* Benefits Section */
-  .benefits-section {
-    padding: 8rem 0;
-    background: var(--light-bg);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .benefits-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 3rem;
-    margin-top: 4rem;
-  }
-
-  .benefit-card {
-    display: flex;
-    align-items: flex-start;
-    gap: 2rem;
-    background: var(--white);
-    padding: 2.5rem;
-    border-radius: 20px;
-    transition: all 0.3s ease;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  }
-
-  .benefit-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-  }
-
-  .benefit-icon {
-    width: 70px;
-    height: 70px;
-    background: var(--light-bg);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .benefit-icon i {
-    font-size: 1.8rem;
-    color: var(--primary-color);
-  }
-
-  .benefit-content h3 {
-    color: var(--primary-color);
-    font-size: 1.3rem;
-    margin-bottom: 0.8rem;
-  }
-
-  .benefit-content p {
-    color: var(--text-color);
-    line-height: 1.6;
-  }
-
-  /* Comparison Section - Mejorado */
-  .comparison-section {
-    padding: 8rem 0;
-    background: var(--white);
-  }
-
-  .comparison-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 3rem;
-    max-width: 1000px;
-    margin: 4rem auto 0;
-  }
-
-  .comparison-card {
-    padding: 3rem;
-    border-radius: 20px;
-    transition: all 0.3s ease;
-  }
-
-  .card-header {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  .card-header i {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: inherit;
-  }
-
-  .card-header h3 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-  }
-
-  .comparison-card.traditional {
-    background: var(--light-bg);
-    color: var(--text-color);
-  }
-
-  .comparison-card.molecular {
-    background: var(--primary-color);
-    color: var(--white);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-  }
-
-  .comparison-card ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .comparison-card li {
-    padding: 1rem 0;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-
-  .comparison-card.molecular li {
-    border-bottom-color: rgba(255, 255, 255, 0.1);
-  }
-
-  .comparison-card li:last-child {
-    border-bottom: none;
-  }
-
-  .comparison-card.traditional i {
-    color: var(--accent-color);
-  }
-
-  .comparison-card.molecular i {
-    color: #4CAF50;
-  }
-
-  /* CTA Section - Mejorado */
-  .cta-section {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: var(--white);
-    padding: 6rem 0;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .cta-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0v10h10v10H30v10h10v10H30v10h10v10H20V50h10V40H20V30h10V20H20V10h10V0h10z' fill='%23ffffff' fill-opacity='0.05'/%3E%3C/svg%3E");
-    opacity: 0.1;
-  }
-
-  .cta-content {
-    position: relative;
-    z-index: 1;
-  }
-
-  .cta-content h2 {
-    font-size: 3rem;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-  }
-
-  .cta-content p {
-    font-size: 1.3rem;
-    margin-bottom: 3rem;
-    opacity: 0.9;
-  }
-
-  .cta-buttons {
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-  }
-
-  .btn {
-    padding: 1.2rem 3rem;
-    font-size: 1.1rem;
-  }
-
-  /* Responsive Design */
-  @media (max-width: 968px) {
-    .advantages-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .benefits-grid,
-    .comparison-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .hero-content h1 {
-      font-size: 3rem;
-    }
-  }
-
-  @media (max-width: 576px) {
-    .advantages-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .benefit-card {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .cta-buttons {
-      flex-direction: column;
-    }
-
-    .btn {
-      width: 100%;
-    }
-
-    .hero-content h1 {
-      font-size: 2.5rem;
-    }
-  }
-
-  .advantage-card:hover {
-    border-color: var(--secondary-color);
-  }
-
-  .advantage-icon {
-    color: var(--primary-color);
-  }
-
-  .comparison-card.molecular {
-    background: var(--primary-color);
-  }
+	/* Estilos base copiados de la página de inicio */
+	main {
+		margin-top: 0;
+		padding-top: 0;
+		position: relative;
+	}
+
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 1.5rem;
+	}
+
+	/* Hero Section */
+	.hero {
+		position: relative;
+		height: 60vh;
+		margin-top: -80px;
+		padding-top: 80px;
+		display: flex;
+		align-items: center;
+		color: var(--color-white);
+		text-align: center;
+		overflow: hidden;
+	}
+
+	.hero-background {
+		position: absolute;
+		top: -80px;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-image: url('https://images.unsplash.com/photo-1579165466741-7f35e4755660?q=80');
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		z-index: -2;
+	}
+
+	.hero-overlay {
+		position: absolute;
+		top: -80px;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: linear-gradient(
+			135deg,
+			rgba(28, 61, 110, 0.95) 0%,
+			rgba(0, 196, 180, 0.85) 100%
+		);
+		z-index: -1;
+	}
+
+	.hero h1 {
+		font-size: 4.5rem;
+		font-weight: 800;
+		margin-bottom: 1.5rem;
+		color: var(--color-white);
+		text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+		line-height: 1.2;
+	}
+
+	.hero-subtitle {
+		font-size: 1.75rem;
+		margin-bottom: 2.5rem;
+		opacity: 0.95;
+		text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+	}
+
+	/* Ventajas Section */
+	.ventajas {
+		padding: 6rem 0;
+		background: var(--color-white);
+	}
+
+	.ventajas-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 2rem;
+	}
+
+	.ventaja-card {
+		background: white;
+		padding: 2.5rem;
+		border-radius: 1rem;
+		box-shadow: 0 8px 16px rgba(28, 61, 110, 0.1);
+		transition: all 0.3s ease;
+		text-align: center;
+	}
+
+	.ventaja-card:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 12px 24px rgba(28, 61, 110, 0.15);
+	}
+
+	.ventaja-icon {
+		font-size: 3rem;
+		background: linear-gradient(135deg, #1C3D6E 0%, #00C4B4 100%);
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+		margin-bottom: 1.5rem;
+	}
+
+	.ventaja-card h3 {
+		font-size: 1.8rem;
+		color: var(--color-primary);
+		margin-bottom: 1rem;
+		font-weight: 700;
+	}
+
+	.ventaja-card p {
+		font-size: 1.1rem;
+		line-height: 1.6;
+		color: var(--color-text);
+	}
+
+	/* Stats Section */
+	.stats {
+		padding: 6rem 0;
+		background: linear-gradient(135deg, rgba(28, 61, 110, 0.05) 0%, rgba(0, 196, 180, 0.05) 100%);
+	}
+
+	.stats h2 {
+		font-size: 3.2rem;
+		font-weight: 800;
+		text-align: center;
+		margin-bottom: 3rem;
+		color: var(--color-primary);
+		position: relative;
+		padding-bottom: 1rem;
+	}
+
+	.stats h2::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 80px;
+		height: 4px;
+		background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+		border-radius: 2px;
+	}
+
+	.stats-grid {
+		display: flex;
+		justify-content: center;
+		gap: 4rem;
+		margin-top: 3rem;
+	}
+
+	.stat-circle {
+		position: relative;
+		width: 120px;
+		height: 120px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.stat-value {
+		position: relative;
+		font-size: 2.5rem;
+		font-weight: 800;
+		color: var(--color-primary);
+		z-index: 1;
+	}
+
+	.stat-ring {
+		position: absolute;
+		width: 120px;
+		height: 120px;
+		transform: rotate(-90deg);
+	}
+
+	.stat-ring circle {
+		fill: none;
+		stroke-width: 8;
+		stroke-linecap: round;
+		stroke-dasharray: 339.292;
+		stroke-dashoffset: 339.292;
+		transition: stroke-dashoffset 1s ease;
+	}
+
+	.stat-ring circle:first-child {
+		stroke: rgba(28, 61, 110, 0.1);
+	}
+
+	.stat-ring circle:last-child {
+		stroke: var(--color-secondary);
+		stroke-dashoffset: calc(339.292 * (1 - var(--percent, 0) / 100));
+	}
+
+	.stat-label {
+		font-size: 1.2rem;
+		font-weight: 500;
+		color: var(--color-primary);
+		text-align: center;
+		margin-top: 1rem;
+		display: block;
+	}
+
+	/* CTA Section */
+	.cta {
+		background: linear-gradient(135deg, #1C3D6E 0%, #00C4B4 100%);
+		color: var(--color-white);
+		text-align: center;
+		padding: 6rem 0;
+	}
+
+	.cta h2 {
+		font-size: 3.2rem;
+		font-weight: 800;
+		color: var(--color-white);
+		margin-bottom: 1.5rem;
+	}
+
+	.cta p {
+		font-size: 1.2rem;
+		margin-bottom: 2rem;
+		opacity: 0.9;
+	}
+
+	.cta-buttons {
+		display: flex;
+		gap: 1.5rem;
+		justify-content: center;
+		margin-top: 3rem;
+	}
+
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.75rem;
+		padding: 1rem 2rem;
+		font-size: 1.1rem;
+		font-weight: 600;
+		border-radius: 0.5rem;
+		transition: all 0.3s ease;
+		text-decoration: none;
+	}
+
+	.btn-primary {
+		background: var(--color-white);
+		color: var(--color-primary);
+	}
+
+	.btn-outline {
+		border: 2px solid var(--color-white);
+		color: var(--color-white);
+	}
+
+	.btn:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+	}
+
+	/* Responsive */
+	@media (max-width: 768px) {
+		.hero h1 {
+			font-size: 3rem;
+		}
+
+		.hero-subtitle {
+			font-size: 1.25rem;
+		}
+
+		.stats-grid {
+			flex-direction: column;
+			align-items: center;
+			gap: 3rem;
+		}
+
+		.cta-buttons {
+			flex-direction: column;
+		}
+
+		.btn {
+			width: 100%;
+			justify-content: center;
+		}
+	}
 </style> 

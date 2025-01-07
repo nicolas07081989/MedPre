@@ -1,588 +1,401 @@
 <script>
-  import { fly } from 'svelte/transition';
+	import { fade, fly } from 'svelte/transition';
 
-  const pricingPlan = {
-    name: "Estudio Molecular Completo",
-    price: "$1300",
-    features: [
-      "Análisis molecular MIR-THYPE Full",
-      "Consulta con especialista",
-      "Interpretación detallada de resultados",
-      "Recomendaciones personalizadas",
-      "Seguimiento post-resultado",
-      "Garantía de precisión del 96%"
-    ]
-  };
-
-  const paymentMethods = [
-    {
-      icon: "fas fa-credit-card",
-      title: "Tarjetas de Crédito",
-      description: "Diferido hasta 12 meses sin intereses",
-      brands: ["Visa", "Mastercard", "American Express"]
-    },
-    {
-      icon: "fas fa-university",
-      title: "Transferencia Bancaria",
-      description: "Transferencia directa a nuestra cuenta corporativa",
-      banks: ["Pichincha", "Guayaquil", "Pacífico"]
-    },
-    {
-      icon: "fas fa-money-bill-wave",
-      title: "Efectivo",
-      description: "Pago en efectivo con facturación inmediata",
-      benefit: "5% de descuento"
-    }
-  ];
-
-  const serviceInclusions = [
-    {
-      icon: "fas fa-flask",
-      title: "Procesamiento de Muestra",
-      description: "Análisis completo en laboratorio especializado con tecnología de última generación"
-    },
-    {
-      icon: "fas fa-plane",
-      title: "Envío Internacional",
-      description: "Traslado seguro de la muestra a laboratorios internacionales con cadena de frío garantizada"
-    },
-    {
-      icon: "fas fa-file-medical-alt",
-      title: "Informe Detallado",
-      description: "Reporte completo con interpretación profesional y recomendaciones específicas"
-    },
-    {
-      icon: "fas fa-user-md",
-      title: "Consulta Médica",
-      description: "Cita con especialista para revisión de resultados y plan de seguimiento personalizado"
-    }
-  ];
+	const beneficios = [
+		{
+			icon: 'microscope',
+			title: 'Estudio Completo',
+			description: 'Análisis molecular MIR-THYPE Full para nódulos tiroideos'
+		},
+		{
+			icon: 'truck-fast',
+			title: 'Envío Incluido',
+			description: 'Traslado seguro de muestras a nivel nacional'
+		},
+		{
+			icon: 'user-md',
+			title: 'Consulta Especializada',
+			description: 'Asesoría gratuita con especialistas para interpretar resultados'
+		},
+		{
+			icon: 'file-medical',
+			title: 'Resultados Detallados',
+			description: 'Informe completo con recomendaciones específicas'
+		}
+	];
 </script>
 
-<div class="investment-page">
-  <!-- Hero Section -->
-  <section class="hero-section">
-    <div class="hero-overlay">
-      <div class="container">
-        <div class="hero-content">
-          <h1>
-            <span class="highlight">Inversión en su Salud</span>
-            <span class="main-title">Diagnóstico de Calidad</span>
-          </h1>
-          <p>Una decisión inteligente para su bienestar y tranquilidad</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<svelte:head>
+	<title>Inversión - MedPre Ecuador</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</svelte:head>
 
-  <!-- Pricing Section -->
-  <section class="pricing-section">
-    <div class="container">
-      <div class="pricing-card" in:fly={{ y: 50, duration: 1000 }}>
-        <div class="pricing-header">
-          <h2>{pricingPlan.name}</h2>
-          <div class="price">
-            <span class="amount">{pricingPlan.price}</span>
-            <span class="period">IVA incluido</span>
-          </div>
-        </div>
-        <ul class="features-list">
-          {#each pricingPlan.features as feature}
-            <li>
-              <i class="fas fa-check-circle"></i>
-              {feature}
-            </li>
-          {/each}
-        </ul>
-        <div class="pricing-footer">
-          <a href="/contacto" class="btn btn-primary">Solicitar Ahora</a>
-        </div>
-      </div>
-    </div>
-  </section>
+<main>
+	<!-- Hero Section -->
+	<section class="hero">
+		<div class="hero-background"></div>
+		<div class="hero-overlay"></div>
+		<div class="container">
+			<div class="hero-content" in:fade={{ duration: 1000 }}>
+				<h1>Inversión en tu Salud</h1>
+				<p class="hero-subtitle">
+					Una decisión inteligente para tu bienestar y tranquilidad
+				</p>
+			</div>
+		</div>
+	</section>
 
-  <!-- Payment Methods -->
-  <section class="payment-section">
-    <div class="container">
-      <h2 class="section-title">Facilidades de Pago</h2>
-      <p class="section-subtitle">Múltiples opciones para su comodidad</p>
-      
-      <div class="payment-grid">
-        {#each paymentMethods as method}
-          <div class="payment-card" in:fly={{ y: 50, duration: 1000 }}>
-            <div class="payment-icon">
-              <i class={method.icon}></i>
-            </div>
-            <h3>{method.title}</h3>
-            <p>{method.description}</p>
-            {#if method.brands}
-              <div class="payment-brands">
-                {#each method.brands as brand}
-                  <span class="brand-tag">{brand}</span>
-                {/each}
-              </div>
-            {/if}
-            {#if method.banks}
-              <div class="payment-brands">
-                {#each method.banks as bank}
-                  <span class="brand-tag">{bank}</span>
-                {/each}
-              </div>
-            {/if}
-            {#if method.benefit}
-              <div class="payment-benefit">
-                <i class="fas fa-tag"></i>
-                {method.benefit}
-              </div>
-            {/if}
-          </div>
-        {/each}
-      </div>
-    </div>
-  </section>
+	<!-- Precio Section -->
+	<section class="precio">
+		<div class="container">
+			<div class="precio-card" in:fly={{ y: 50, duration: 1000 }}>
+				<div class="precio-header">
+					<h2>Estudio Molecular MIR-THYPE Full</h2>
+					<div class="precio-amount">
+						<span class="currency">$</span>
+						<span class="amount">1,300</span>
+					</div>
+					<p class="precio-note">Precio incluye IVA</p>
+				</div>
+				<div class="precio-features">
+					{#each beneficios as beneficio}
+						<div class="feature-item">
+							<i class="fas fa-{beneficio.icon}"></i>
+							<div>
+								<h3>{beneficio.title}</h3>
+								<p>{beneficio.description}</p>
+							</div>
+						</div>
+					{/each}
+				</div>
+			</div>
+		</div>
+	</section>
 
-  <!-- Service Inclusions -->
-  <section class="inclusions-section">
-    <div class="container">
-      <h2 class="section-title">¿Qué Incluye su Inversión?</h2>
-      <p class="section-subtitle">Servicio completo y profesional</p>
-      
-      <div class="inclusions-grid">
-        {#each serviceInclusions as inclusion}
-          <div class="inclusion-card" in:fly={{ y: 50, duration: 1000 }}>
-            <div class="inclusion-icon">
-              <i class={inclusion.icon}></i>
-            </div>
-            <div class="inclusion-content">
-              <h3>{inclusion.title}</h3>
-              <p>{inclusion.description}</p>
-            </div>
-          </div>
-        {/each}
-      </div>
-    </div>
-  </section>
+	<!-- Métodos de Pago -->
+	<section class="payment">
+		<div class="container">
+			<h2>Facilidades de Pago</h2>
+			<div class="payment-grid">
+				<div class="payment-card">
+					<div class="payment-icon">
+						<i class="fas fa-credit-card"></i>
+					</div>
+					<h3>Tarjetas de Crédito</h3>
+					<p>Aceptamos todas las tarjetas principales con opción a diferir</p>
+				</div>
+				<div class="payment-card">
+					<div class="payment-icon">
+						<i class="fas fa-university"></i>
+					</div>
+					<h3>Transferencia Bancaria</h3>
+					<p>Transferencia directa a nuestra cuenta empresarial</p>
+				</div>
+			</div>
+		</div>
+	</section>
 
-  <!-- CTA Section -->
-  <section class="cta-section">
-    <div class="container">
-      <div class="cta-content">
-        <h2>¿Listo para Invertir en su Salud?</h2>
-        <p>Nuestro equipo está disponible para resolver todas sus dudas</p>
-        <div class="cta-buttons">
-          <a href="/contacto" class="btn btn-primary">
-            <i class="fas fa-calendar-check"></i>
-            Agendar Consulta
-          </a>
-          <a href="tel:+59397913621" class="btn btn-outline">
-            <i class="fas fa-phone"></i>
-            Llamar Ahora
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
+	<!-- CTA Section -->
+	<section class="cta">
+		<div class="container">
+			<div class="cta-content">
+				<h2>Comienza tu Diagnóstico</h2>
+				<p>Contacta con nosotros para iniciar tu proceso</p>
+				<div class="cta-buttons">
+					<a href="https://wa.me/593979136217" class="btn btn-primary">
+						<i class="fab fa-whatsapp"></i>
+						WhatsApp (+593) 97 913 6217
+					</a>
+					<a href="mailto:medpre.ecuador@gmail.com" class="btn btn-outline">
+						<i class="fas fa-envelope"></i>
+						medpre.ecuador@gmail.com
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</main>
 
 <style>
-  .investment-page {
-    background: var(--white);
-  }
+	/* Estilos base copiados de la página de inicio */
+	main {
+		margin-top: 0;
+		padding-top: 0;
+		position: relative;
+	}
 
-  /* Hero Section */
-  .hero-section {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                      url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80');
-    background-size: cover;
-    background-position: center;
-    height: 60vh;
-    position: relative;
-    color: var(--white);
-  }
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 1.5rem;
+	}
 
-  .hero-overlay {
-    background: var(--gradient-overlay);
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    text-align: center;
-  }
+	/* Hero Section */
+	.hero {
+		position: relative;
+		height: 60vh;
+		margin-top: -80px;
+		padding-top: 80px;
+		display: flex;
+		align-items: center;
+		color: var(--color-white);
+		text-align: center;
+		overflow: hidden;
+	}
 
-  .hero-content {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
+	.hero-background {
+		position: absolute;
+		top: -80px;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-image: url('https://images.unsplash.com/photo-1579165466741-7f35e4755660?q=80');
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		z-index: -2;
+	}
 
-  .hero-content h1 {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  }
+	.hero-overlay {
+		position: absolute;
+		top: -80px;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: linear-gradient(
+			135deg,
+			rgba(28, 61, 110, 0.95) 0%,
+			rgba(0, 196, 180, 0.85) 100%
+		);
+		z-index: -1;
+	}
 
-  .hero-content .highlight {
-    display: block;
-    font-size: 2rem;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-    opacity: 0.9;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
+	.hero h1 {
+		font-size: 4.5rem;
+		font-weight: 800;
+		margin-bottom: 1.5rem;
+		color: var(--color-white);
+		text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+		line-height: 1.2;
+	}
 
-  .hero-content .main-title {
-    display: block;
-    font-size: 3.5rem;
-    font-weight: 800;
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-  }
+	.hero-subtitle {
+		font-size: 1.75rem;
+		margin-bottom: 2.5rem;
+		opacity: 0.95;
+		text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+	}
 
-  .hero-content p {
-    font-size: 1.25rem;
-    opacity: 0.9;
-    max-width: 600px;
-    margin: 0 auto;
-  }
+	/* Precio Section */
+	.precio {
+		padding: 6rem 0;
+		background: var(--color-white);
+	}
 
-  /* Pricing Section */
-  .pricing-section {
-    padding: 6rem 0;
-    background: var(--white);
-    margin-top: -60px;
-    position: relative;
-  }
+	.precio-card {
+		max-width: 800px;
+		margin: 0 auto;
+		background: white;
+		border-radius: 1rem;
+		box-shadow: 0 8px 16px rgba(28, 61, 110, 0.1);
+		overflow: hidden;
+	}
 
-  .pricing-card {
-    background: var(--white);
-    padding: 4rem;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto;
-    position: relative;
-    overflow: hidden;
-  }
+	.precio-header {
+		background: linear-gradient(135deg, #1C3D6E 0%, #00C4B4 100%);
+		color: white;
+		padding: 3rem;
+		text-align: center;
+	}
 
-  .pricing-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 6px;
-    background: var(--gradient-primary);
-  }
+	.precio-header h2 {
+		font-size: 2.5rem;
+		margin-bottom: 2rem;
+		color: white;
+	}
 
-  .pricing-header h2 {
-    color: var(--primary-color);
-    font-size: 2rem;
-    margin-bottom: 2rem;
-  }
+	.precio-amount {
+		font-size: 4rem;
+		font-weight: 800;
+		line-height: 1;
+		margin-bottom: 1rem;
+	}
 
-  .price {
-    margin: 2rem 0;
-  }
+	.precio-note {
+		font-size: 1.1rem;
+		opacity: 0.9;
+	}
 
-  .amount {
-    font-size: 4.5rem;
-    font-weight: 800;
-    color: var(--primary-color);
-    line-height: 1;
-  }
+	.precio-features {
+		padding: 3rem;
+	}
 
-  .period {
-    display: block;
-    color: var(--text-color);
-    font-size: 1.1rem;
-    margin-top: 0.8rem;
-    opacity: 0.7;
-  }
+	.feature-item {
+		display: flex;
+		align-items: flex-start;
+		gap: 1.5rem;
+		margin-bottom: 2rem;
+	}
 
-  .features-list {
-    list-style: none;
-    padding: 0;
-    margin: 3rem 0;
-    text-align: left;
-  }
+	.feature-item i {
+		font-size: 2rem;
+		color: var(--color-secondary);
+		flex-shrink: 0;
+	}
 
-  .features-list li {
-    margin: 1.2rem 0;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    color: var(--text-color);
-    font-size: 1.1rem;
-    padding: 0.5rem 0;
-  }
+	.feature-item h3 {
+		font-size: 1.3rem;
+		color: var(--color-primary);
+		margin-bottom: 0.5rem;
+	}
 
-  .features-list i {
-    color: var(--secondary-color);
-    font-size: 1.3rem;
-  }
+	.feature-item p {
+		font-size: 1.1rem;
+		color: var(--color-text);
+	}
 
-  /* Payment Methods */
-  .payment-section {
-    padding: 8rem 0;
-    background: var(--light-bg);
-    position: relative;
-  }
+	/* Payment Section */
+	.payment {
+		padding: 6rem 0;
+		background: linear-gradient(135deg, rgba(28, 61, 110, 0.05) 0%, rgba(0, 196, 180, 0.05) 100%);
+	}
 
-  .section-title {
-    text-align: center;
-    font-size: 2.5rem;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-  }
+	.payment h2 {
+		font-size: 3.2rem;
+		font-weight: 800;
+		text-align: center;
+		margin-bottom: 3rem;
+		color: var(--color-primary);
+		position: relative;
+		padding-bottom: 1rem;
+	}
 
-  .section-subtitle {
-    text-align: center;
-    font-size: 1.2rem;
-    color: var(--text-color);
-    margin-bottom: 4rem;
-    opacity: 0.8;
-  }
+	.payment h2::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 80px;
+		height: 4px;
+		background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+		border-radius: 2px;
+	}
 
-  .payment-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem;
-  }
+	.payment-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 3rem;
+		max-width: 800px;
+		margin: 0 auto;
+	}
 
-  .payment-card {
-    background: var(--white);
-    padding: 3rem 2rem;
-    border-radius: 20px;
-    text-align: center;
-    transition: all 0.3s ease;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  }
+	.payment-card {
+		background: white;
+		padding: 2.5rem;
+		border-radius: 1rem;
+		text-align: center;
+		box-shadow: 0 8px 16px rgba(28, 61, 110, 0.1);
+		transition: all 0.3s ease;
+	}
 
-  .payment-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  }
+	.payment-card:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 12px 24px rgba(28, 61, 110, 0.15);
+	}
 
-  .payment-icon {
-    width: 80px;
-    height: 80px;
-    background: var(--light-bg);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 2rem;
-    transition: all 0.3s ease;
-  }
+	.payment-icon {
+		font-size: 3rem;
+		color: var(--color-secondary);
+		margin-bottom: 1.5rem;
+	}
 
-  .payment-card:hover .payment-icon {
-    background: var(--primary-color);
-  }
+	.payment-card h3 {
+		font-size: 1.8rem;
+		color: var(--color-primary);
+		margin-bottom: 1rem;
+	}
 
-  .payment-card:hover .payment-icon i {
-    color: var(--white);
-  }
+	/* CTA Section */
+	.cta {
+		background: linear-gradient(135deg, #1C3D6E 0%, #00C4B4 100%);
+		color: var(--color-white);
+		text-align: center;
+		padding: 6rem 0;
+	}
 
-  .payment-icon i {
-    font-size: 2rem;
-    color: var(--primary-color);
-    transition: all 0.3s ease;
-  }
+	.cta h2 {
+		font-size: 3.2rem;
+		font-weight: 800;
+		color: var(--color-white);
+		margin-bottom: 1.5rem;
+	}
 
-  .payment-card h3 {
-    color: var(--primary-color);
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
+	.cta p {
+		font-size: 1.2rem;
+		margin-bottom: 2rem;
+		opacity: 0.9;
+	}
 
-  .payment-brands {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 1.5rem;
-  }
+	.cta-buttons {
+		display: flex;
+		gap: 1.5rem;
+		justify-content: center;
+		margin-top: 3rem;
+	}
 
-  .brand-tag {
-    background: var(--light-bg);
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    color: var(--primary-color);
-    transition: all 0.3s ease;
-  }
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.75rem;
+		padding: 1rem 2rem;
+		font-size: 1.1rem;
+		font-weight: 600;
+		border-radius: 0.5rem;
+		transition: all 0.3s ease;
+		text-decoration: none;
+	}
 
-  .payment-card:hover .brand-tag {
-    background: var(--primary-color);
-    color: var(--white);
-  }
+	.btn-primary {
+		background: var(--color-white);
+		color: var(--color-primary);
+	}
 
-  .payment-benefit {
-    margin-top: 1.5rem;
-    color: var(--accent-color);
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-  }
+	.btn-outline {
+		border: 2px solid var(--color-white);
+		color: var(--color-white);
+	}
 
-  /* Service Inclusions */
-  .inclusions-section {
-    padding: 8rem 0;
-    background: var(--white);
-  }
+	.btn:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+	}
 
-  .inclusions-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2.5rem;
-    margin-top: 4rem;
-  }
+	/* Responsive */
+	@media (max-width: 768px) {
+		.hero h1 {
+			font-size: 3rem;
+		}
 
-  .inclusion-card {
-    display: flex;
-    align-items: flex-start;
-    gap: 2rem;
-    padding: 3rem;
-    background: var(--light-bg);
-    border-radius: 20px;
-    transition: all 0.3s ease;
-  }
+		.hero-subtitle {
+			font-size: 1.25rem;
+		}
 
-  .inclusion-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-    background: var(--white);
-  }
+		.precio-amount {
+			font-size: 3rem;
+		}
 
-  .inclusion-icon {
-    width: 70px;
-    height: 70px;
-    background: var(--white);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-  }
+		.payment-grid {
+			grid-template-columns: 1fr;
+		}
 
-  .inclusion-icon i {
-    font-size: 1.8rem;
-    color: var(--primary-color);
-  }
+		.cta-buttons {
+			flex-direction: column;
+		}
 
-  .inclusion-content h3 {
-    color: var(--primary-color);
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-  }
-
-  .inclusion-content p {
-    color: var(--text-color);
-    line-height: 1.6;
-  }
-
-  /* CTA Section */
-  .cta-section {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: var(--white);
-    padding: 8rem 0;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .cta-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0v10h10v10H30v10h10v10H30v10h10v10H20V50h10V40H20V30h10V20H20V10h10V0h10z' fill='%23ffffff' fill-opacity='0.05'/%3E%3C/svg%3E");
-    opacity: 0.1;
-  }
-
-  .cta-content {
-    position: relative;
-    z-index: 1;
-  }
-
-  .cta-content h2 {
-    font-size: 3rem;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-  }
-
-  .cta-content p {
-    font-size: 1.3rem;
-    margin-bottom: 3rem;
-    opacity: 0.9;
-  }
-
-  .cta-buttons {
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-  }
-
-  .btn {
-    padding: 1.2rem 3rem;
-    font-size: 1.1rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.8rem;
-    border-radius: 8px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-  }
-
-  /* Responsive Design */
-  @media (max-width: 968px) {
-    .payment-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .inclusions-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .hero-content h1 {
-      font-size: 3rem;
-    }
-
-    .pricing-card.highlight {
-      transform: none;
-    }
-  }
-
-  @media (max-width: 576px) {
-    .payment-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .inclusion-card {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .cta-buttons {
-      flex-direction: column;
-    }
-
-    .btn {
-      width: 100%;
-    }
-
-    .hero-content h1 {
-      font-size: 2.5rem;
-    }
-
-    .amount {
-      font-size: 3rem;
-    }
-  }
+		.btn {
+			width: 100%;
+			justify-content: center;
+		}
+	}
 </style> 

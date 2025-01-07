@@ -1,480 +1,415 @@
 <script>
-  const teamMembers = [
-    {
-      name: "Dr. Juan Pérez",
-      role: "Director Médico",
-      specialty: "Especialista en Endocrinología",
-      experience: "15 años de experiencia",
-      education: "PhD en Medicina, Universidad de Barcelona",
-      image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80"
-    },
-    {
-      name: "Dra. María González",
-      role: "Especialista en Diagnóstico Molecular",
-      specialty: "PhD en Biología Molecular",
-      experience: "12 años de experiencia",
-      education: "Doctorado en Biología Molecular, Universidad de Stanford",
-      image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80"
-    },
-    {
-      name: "Dr. Carlos Rodríguez",
-      role: "Jefe de Laboratorio",
-      specialty: "Especialista en Patología Molecular",
-      experience: "10 años de experiencia",
-      education: "Máster en Patología Molecular, Universidad de Madrid",
-      image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80"
-    }
-  ];
+	import { fade, fly } from 'svelte/transition';
 </script>
 
-<div class="about-page">
-  <!-- Hero Section -->
-  <section class="about-hero">
-    <div class="hero-overlay">
-      <div class="hero-content">
-        <h1>Quiénes Somos</h1>
-        <p>Líderes en diagnóstico molecular de precisión en Ecuador</p>
-      </div>
-    </div>
-  </section>
+<svelte:head>
+	<title>Quiénes Somos - MedPre Ecuador</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</svelte:head>
 
-  <!-- Introducción -->
-  <section class="intro-section">
-    <div class="container">
-      <div class="intro-grid">
-        <div class="intro-text">
-          <h2>Nuestra Historia</h2>
-          <p>MedPre nació a finales de 2024 con una misión clara: revolucionar el diagnóstico de cáncer de tiroides en Ecuador. Nos especializamos en estudios moleculares de precisión, ofreciendo a nuestros pacientes y profesionales médicos las herramientas más avanzadas para un diagnóstico certero.</p>
-          <div class="stats-row">
-            <div class="stat-item">
-              <span class="stat-number">96%</span>
-              <span class="stat-label">Precisión diagnóstica</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-number">500+</span>
-              <span class="stat-label">Pacientes atendidos</span>
-            </div>
-          </div>
-        </div>
-        <div class="intro-image">
-          <img 
-            src="https://images.unsplash.com/photo-1581595220892-b0739db3ba8c?auto=format&fit=crop&q=80" 
-            alt="Equipo médico de MedPre"
-          />
-        </div>
-      </div>
-    </div>
-  </section>
+<main>
+	<!-- Hero Section -->
+	<section class="hero">
+		<div class="hero-background"></div>
+		<div class="hero-overlay"></div>
+		<div class="container">
+			<div class="hero-content" in:fade={{ duration: 1000 }}>
+				<h1>Quiénes Somos</h1>
+				<p class="hero-subtitle">
+					Medicina de Precisión Ecuador - Fundada a finales del 2024
+				</p>
+			</div>
+		</div>
+	</section>
 
-  <!-- Misión y Visión -->
-  <section class="mission-vision-section">
-    <div class="container">
-      <div class="mission-vision-grid">
-        <div class="mission-card">
-          <i class="fas fa-heartbeat"></i>
-          <h3>Nuestra Misión</h3>
-          <p>Ayudar a todos los pacientes con nódulos de tiroides en el Ecuador a descubrir con certeza si existe o no la posibilidad de desarrollar cáncer a través de estudios moleculares de precisión, evitando cirugías innecesarias.</p>
-        </div>
-        <div class="vision-card">
-          <i class="fas fa-eye"></i>
-          <h3>Nuestra Visión</h3>
-          <p>Superar los 500 estudios realizados entre el 2025 y 2030, haciendo que sean accesibles a toda la población ecuatoriana.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+	<!-- Misión y Visión -->
+	<section class="mission-vision">
+		<div class="container">
+			<div class="mission-vision-grid">
+				<div class="mission-card" in:fly={{ y: 50, duration: 1000, delay: 200 }}>
+					<div class="card-icon">
+						<i class="fas fa-bullseye"></i>
+					</div>
+					<h2>Misión</h2>
+					<p>
+						Ayudar a pacientes con nódulos de tiroides a descubrir con certeza la posibilidad de desarrollar 
+						cáncer, evitando cirugías innecesarias mediante estudios moleculares de precisión.
+					</p>
+				</div>
+				<div class="vision-card" in:fly={{ y: 50, duration: 1000, delay: 400 }}>
+					<div class="card-icon">
+						<i class="fas fa-binoculars"></i>
+					</div>
+					<h2>Visión</h2>
+					<p>
+						Entre 2025 y 2030, realizar más de 500 estudios accesibles a la población ecuatoriana, 
+						contribuyendo significativamente a la salud de nuestros pacientes.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
 
-  <!-- Equipo -->
-  <section class="team-section">
-    <div class="container">
-      <h2>Nuestro Equipo Médico</h2>
-      <p class="section-subtitle">
-        Un equipo multidisciplinario de expertos dedicados a tu bienestar
-      </p>
-      
-      <div class="team-grid">
-        {#each teamMembers as member}
-          <div class="team-member">
-            <div class="member-image-container">
-              <img src={member.image} alt={member.name} />
-            </div>
-            <div class="member-info">
-              <h3>{member.name}</h3>
-              <p class="role">{member.role}</p>
-              <p class="specialty">{member.specialty}</p>
-              <div class="member-details">
-                <p><i class="fas fa-graduation-cap"></i> {member.education}</p>
-                <p><i class="fas fa-clock"></i> {member.experience}</p>
-              </div>
-            </div>
-          </div>
-        {/each}
-      </div>
-    </div>
-  </section>
+	<!-- Información Médica -->
+	<section class="medical-info">
+		<div class="container">
+			<h2>Información Médica</h2>
+			<div class="info-grid">
+				<div class="info-card">
+					<div class="info-icon">
+						<i class="fas fa-microscope"></i>
+					</div>
+					<h3>Nódulos Tiroideos</h3>
+					<p>Especialización en el análisis de nódulos tiroideos grado III y IV según Bethesda.</p>
+				</div>
+				<div class="info-card">
+					<div class="info-icon">
+						<i class="fas fa-chart-pie"></i>
+					</div>
+					<h3>Estadísticas</h3>
+					<p>Solo 2 de cada 10 nódulos operados resultan malignos. El 80% de los nódulos podrían evitar la cirugía.</p>
+				</div>
+			</div>
+		</div>
+	</section>
 
-  <!-- CTA -->
-  <section class="cta-section pattern-transition">
-    <div class="medical-symbols"></div>
-    <div class="container">
-      <div class="cta-content">
-        <h2>¿Necesitas más información?</h2>
-        <p>Nuestro equipo está listo para atender todas tus consultas</p>
-        <div class="cta-buttons">
-          <a href="/contacto" class="btn btn-primary">Contactar Ahora</a>
-          <a href="tel:+59397913621" class="btn btn-outline">
-            <i class="fas fa-phone"></i>
-            Llamar
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
+	<!-- Nuestro Equipo -->
+	<section class="team">
+		<div class="container">
+			<h2>Equipo Especializado</h2>
+			<div class="team-content">
+				<div class="team-text">
+					<p>
+						Contamos con un equipo de profesionales altamente capacitados en medicina molecular y diagnóstico 
+						de precisión, respaldados por años de experiencia y formación internacional.
+					</p>
+					<ul class="team-features">
+						<li>
+							<i class="fas fa-check-circle"></i>
+							Especialistas en diagnóstico molecular
+						</li>
+						<li>
+							<i class="fas fa-check-circle"></i>
+							Experiencia en patología tiroidea
+						</li>
+						<li>
+							<i class="fas fa-check-circle"></i>
+							Formación continua y actualización
+						</li>
+						<li>
+							<i class="fas fa-check-circle"></i>
+							Compromiso con la excelencia médica
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA Section -->
+	<section class="cta">
+		<div class="container">
+			<div class="cta-content">
+				<h2>¿Necesitas más información?</h2>
+				<p>Nuestro equipo está listo para atender todas tus consultas</p>
+				<div class="cta-buttons">
+					<a href="https://wa.me/593979136217" class="btn btn-primary">
+						<i class="fab fa-whatsapp"></i>
+						WhatsApp (+593) 97 913 6217
+					</a>
+					<a href="mailto:medpre.ecuador@gmail.com" class="btn btn-outline">
+						<i class="fas fa-envelope"></i>
+						medpre.ecuador@gmail.com
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</main>
 
 <style>
-  .about-page {
-    background: var(--light-bg);
-  }
+	/* Estilos base copiados de la página de inicio */
+	main {
+		margin-top: 0;
+		padding-top: 0;
+		position: relative;
+	}
 
-  /* Hero Section */
-  .about-hero {
-    background-image: url('https://images.unsplash.com/photo-1504813184591-01572f98c85f?auto=format&fit=crop&q=80');
-    background-size: cover;
-    background-position: center;
-    height: 60vh;
-    position: relative;
-    color: var(--white);
-  }
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 1.5rem;
+	}
 
-  .hero-overlay {
-    background: var(--gradient-overlay);
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
+	/* Hero Section con los mismos estilos que inicio */
+	.hero {
+		position: relative;
+		height: 60vh;
+		margin-top: -80px;
+		padding-top: 80px;
+		display: flex;
+		align-items: center;
+		color: var(--color-white);
+		text-align: center;
+		overflow: hidden;
+	}
 
-  .hero-content h1 {
-    font-size: 4rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  }
+	.hero-background {
+		position: absolute;
+		top: -80px;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-image: url('https://images.unsplash.com/photo-1579165466741-7f35e4755660?q=80');
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		z-index: -2;
+	}
 
-  .hero-content p {
-    font-size: 1.5rem;
-    opacity: 0.9;
-  }
+	.hero-overlay {
+		position: absolute;
+		top: -80px;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: linear-gradient(
+			135deg,
+			rgba(28, 61, 110, 0.95) 0%,
+			rgba(0, 196, 180, 0.85) 100%
+		);
+		z-index: -1;
+	}
 
-  /* Intro Section */
-  .intro-section {
-    padding: 6rem 0;
-    background: var(--white);
-    position: relative;
-    margin-top: -60px;
-    border-radius: 30px 30px 0 0;
-  }
+	.hero h1 {
+		font-size: 4.5rem;
+		font-weight: 800;
+		margin-bottom: 1.5rem;
+		color: var(--color-white);
+		text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+		line-height: 1.2;
+	}
 
-  .intro-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-  }
+	.hero-subtitle {
+		font-size: 1.75rem;
+		margin-bottom: 2.5rem;
+		opacity: 0.95;
+		text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+	}
 
-  .intro-text h2 {
-    color: var(--primary-color);
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    position: relative;
-  }
+	/* Estilos de sección */
+	section {
+		padding: 6rem 0;
+	}
 
-  .intro-text h2::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 60px;
-    height: 4px;
-    background: var(--accent-color);
-    border-radius: 2px;
-  }
+	section h2 {
+		font-size: 3.2rem;
+		font-weight: 800;
+		text-align: center;
+		margin-bottom: 3rem;
+		color: var(--color-primary);
+		position: relative;
+		padding-bottom: 1rem;
+	}
 
-  .intro-text p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: var(--text-color);
-    margin-bottom: 2rem;
-  }
+	section h2::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 80px;
+		height: 4px;
+		background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+		border-radius: 2px;
+	}
 
-  .intro-image img {
-    width: 100%;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-  }
+	/* Misión y Visión */
+	.mission-vision {
+		background: var(--color-white);
+	}
 
-  .intro-image:hover img {
-    transform: scale(1.02);
-  }
+	.mission-vision-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 3rem;
+	}
 
-  .stats-row {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    margin-top: 3rem;
-    background: var(--light-bg);
-    padding: 2rem;
-    border-radius: 15px;
-  }
+	.mission-card,
+	.vision-card {
+		background: white;
+		padding: 3rem;
+		border-radius: 1rem;
+		box-shadow: 0 8px 16px rgba(28, 61, 110, 0.1);
+		text-align: center;
+		transition: all 0.3s ease;
+	}
 
-  .stat-item {
-    text-align: center;
-  }
+	.mission-card:hover,
+	.vision-card:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 12px 24px rgba(28, 61, 110, 0.15);
+	}
 
-  .stat-number {
-    font-size: 3.5rem;
-    font-weight: 800;
-    color: var(--accent-color);
-    display: block;
-    line-height: 1;
-  }
+	.card-icon {
+		font-size: 3.5rem;
+		background: linear-gradient(135deg, #1C3D6E 0%, #00C4B4 100%);
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+		margin-bottom: 1.5rem;
+	}
 
-  .stat-label {
-    color: var(--text-color);
-    font-size: 1.1rem;
-    margin-top: 0.5rem;
-  }
+	/* Información Médica */
+	.medical-info {
+		background: linear-gradient(135deg, rgba(28, 61, 110, 0.05) 0%, rgba(0, 196, 180, 0.05) 100%);
+	}
 
-  /* Mission Vision Section */
-  .mission-vision-section {
-    background: var(--light-bg);
-    padding: 6rem 0;
-    position: relative;
-    overflow: hidden;
-  }
+	.info-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 3rem;
+	}
 
-  .mission-vision-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 3rem;
-  }
+	.info-card {
+		background: white;
+		padding: 2.5rem;
+		border-radius: 1rem;
+		box-shadow: 0 8px 16px rgba(28, 61, 110, 0.1);
+		transition: all 0.3s ease;
+	}
 
-  .mission-card,
-  .vision-card {
-    background: var(--white);
-    padding: 3rem;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    text-align: center;
-    transition: transform 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
+	.info-card:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 12px 24px rgba(28, 61, 110, 0.15);
+	}
 
-  .mission-card:hover,
-  .vision-card:hover {
-    transform: translateY(-10px);
-  }
+	.info-icon {
+		font-size: 2.5rem;
+		color: var(--color-secondary);
+		margin-bottom: 1.5rem;
+	}
 
-  .mission-card i,
-  .vision-card i {
-    font-size: 3rem;
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
-    background: var(--light-bg);
-    width: 80px;
-    height: 80px;
-    line-height: 80px;
-    border-radius: 50%;
-  }
+	.info-card h3 {
+		font-size: 1.8rem;
+		margin-bottom: 1rem;
+		color: var(--color-primary);
+	}
 
-  .mission-card h3,
-  .vision-card h3 {
-    color: var(--primary-color);
-    font-size: 1.8rem;
-    margin-bottom: 1.5rem;
-  }
+	/* Equipo */
+	.team {
+		background: var(--color-white);
+	}
 
-  .mission-card p,
-  .vision-card p {
-    color: var(--text-color);
-    line-height: 1.8;
-  }
+	.team-content {
+		max-width: 800px;
+		margin: 0 auto;
+	}
 
-  /* Team Section */
-  .team-section {
-    padding: 8rem 0;
-    background: var(--white);
-    text-align: center;
-  }
+	.team-features {
+		list-style: none;
+		padding: 0;
+		margin-top: 2rem;
+	}
 
-  .team-section h2 {
-    color: var(--primary-color);
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
+	.team-features li {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 1.5rem;
+		font-size: 1.2rem;
+		padding: 1rem;
+		background: linear-gradient(135deg, rgba(28, 61, 110, 0.05) 0%, rgba(0, 196, 180, 0.05) 100%);
+		border-radius: 0.5rem;
+		transition: all 0.3s ease;
+	}
 
-  .section-subtitle {
-    font-size: 1.2rem;
-    color: var(--text-color);
-    margin-bottom: 4rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+	.team-features li:hover {
+		transform: translateX(10px);
+		background: linear-gradient(135deg, rgba(28, 61, 110, 0.1) 0%, rgba(0, 196, 180, 0.1) 100%);
+	}
 
-  .team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 3rem;
-    margin-top: 3rem;
-  }
+	.team-features i {
+		font-size: 1.5rem;
+		color: var(--color-secondary);
+	}
 
-  .team-member {
-    text-align: center;
-  }
+	/* CTA Section */
+	.cta {
+		background: linear-gradient(135deg, #1C3D6E 0%, #00C4B4 100%);
+		color: var(--color-white);
+		text-align: center;
+	}
 
-  .member-image-container {
-    position: relative;
-    width: 250px;
-    height: 250px;
-    margin: 0 auto 2rem;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  }
+	.cta h2 {
+		color: var(--color-white);
+	}
 
-  .member-image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
+	.cta h2::after {
+		background: linear-gradient(90deg, var(--color-white), rgba(255, 255, 255, 0.5));
+	}
 
-  .member-image-container:hover img {
-    transform: scale(1.05);
-  }
+	.cta-buttons {
+		display: flex;
+		gap: 1.5rem;
+		justify-content: center;
+		margin-top: 3rem;
+	}
 
-  .member-info {
-    background: var(--light-bg);
-    padding: 2rem;
-    border-radius: 15px;
-    margin-top: -30px;
-    position: relative;
-    z-index: 1;
-  }
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.75rem;
+		padding: 1rem 2rem;
+		font-size: 1.1rem;
+		font-weight: 600;
+		border-radius: 0.5rem;
+		transition: all 0.3s ease;
+		text-decoration: none;
+	}
 
-  .member-info h3 {
-    color: var(--primary-color);
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-  }
+	.btn-primary {
+		background: var(--color-white);
+		color: var(--color-primary);
+	}
 
-  .role {
-    color: var(--accent-color);
-    font-weight: 600;
-    margin: 0.5rem 0;
-  }
+	.btn-outline {
+		border: 2px solid var(--color-white);
+		color: var(--color-white);
+	}
 
-  .specialty {
-    color: var(--text-color);
-    font-style: italic;
-    margin-bottom: 1rem;
-  }
+	.btn:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+	}
 
-  .member-details {
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-  }
+	/* Responsive */
+	@media (max-width: 768px) {
+		.hero h1 {
+			font-size: 3rem;
+		}
 
-  .member-details p {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin: 0.5rem 0;
-    color: var(--text-color);
-    font-size: 0.9rem;
-  }
+		.hero-subtitle {
+			font-size: 1.25rem;
+		}
 
-  .member-details i {
-    color: var(--primary-color);
-  }
+		section h2 {
+			font-size: 2.5rem;
+		}
 
-  /* CTA Section */
-  .cta-section {
-    background: var(--primary-color);
-    color: var(--white);
-    padding: 6rem 0;
-    text-align: center;
-  }
+		.mission-vision-grid,
+		.info-grid {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
 
-  .cta-content h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
+		.cta-buttons {
+			flex-direction: column;
+		}
 
-  .cta-content p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    opacity: 0.9;
-  }
-
-  .cta-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-  }
-
-  /* Responsive Design */
-  @media (max-width: 968px) {
-    .intro-grid,
-    .mission-vision-grid {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-
-    .hero-content h1 {
-      font-size: 3rem;
-    }
-
-    .intro-section {
-      margin-top: -30px;
-    }
-
-    .team-grid {
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
-  }
-
-  @media (max-width: 576px) {
-    .hero-content h1 {
-      font-size: 2.5rem;
-    }
-
-    .stats-row {
-      grid-template-columns: 1fr;
-    }
-
-    .cta-buttons {
-      flex-direction: column;
-    }
-
-    .member-image-container {
-      width: 200px;
-      height: 200px;
-    }
-  }
-
-  .team-member-card:hover {
-    border-color: var(--secondary-color);
-  }
-
-  .specialty-icon {
-    color: var(--primary-color);
-  }
+		.btn {
+			width: 100%;
+			justify-content: center;
+		}
+	}
 </style> 

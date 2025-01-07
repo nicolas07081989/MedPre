@@ -1,507 +1,395 @@
 <script>
-  import { fly } from 'svelte/transition';
+	import { fade, fly } from 'svelte/transition';
 
-  let formData = {
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: ''
-  };
-
-  const contactInfo = [
-    {
-      icon: "fas fa-map-marker-alt",
-      title: "Ubicación",
-      details: ["Quito, Ecuador", "Av. Principal 123"],
-      action: "https://goo.gl/maps/xyz",
-      actionText: "Ver en Mapa",
-      color: "#00B4D8"
-    },
-    {
-      icon: "fas fa-phone-alt",
-      title: "Teléfonos",
-      details: ["+593 97 913 621", "02-123-4567"],
-      action: "tel:+59397913621",
-      actionText: "Llamar Ahora",
-      color: "#4CAF50"
-    },
-    {
-      icon: "fas fa-envelope",
-      title: "Email",
-      details: ["medpre.ecuador@gmail.com"],
-      action: "mailto:medpre.ecuador@gmail.com",
-      actionText: "Enviar Email",
-      color: "#FF4444"
-    },
-    {
-      icon: "fas fa-clock",
-      title: "Horario de Atención",
-      details: ["Lunes a Viernes: 8:00 - 18:00", "Sábados: 9:00 - 13:00"],
-      color: "#FFA000"
-    }
-  ];
-
-  function handleSubmit() {
-    // Implementar lógica de envío
-    console.log('Formulario enviado:', formData);
-  }
+	const contactInfo = [
+		{
+			icon: 'whatsapp',
+			title: 'WhatsApp',
+			description: '(+593) 97 913 6217',
+			link: 'https://wa.me/593979136217'
+		},
+		{
+			icon: 'envelope',
+			title: 'Email',
+			description: 'medpre.ecuador@gmail.com',
+			link: 'mailto:medpre.ecuador@gmail.com'
+		},
+		{
+			icon: 'clock',
+			title: 'Horario de Atención',
+			description: 'Lunes a Viernes: 9:00 - 18:00'
+		},
+		{
+			icon: 'location-dot',
+			title: 'Ubicación',
+			description: 'Guayaquil, Ecuador'
+		}
+	];
 </script>
 
-<div class="contact-page">
-  <!-- Hero Section -->
-  <section class="hero-section">
-    <div class="hero-overlay">
-      <div class="container">
-        <div class="hero-content">
-          <h1>
-            <span class="highlight">Contáctenos</span>
-            <span class="main-title">Estamos para Ayudarle</span>
-          </h1>
-          <p>Nuestro equipo está disponible para resolver todas sus dudas</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<svelte:head>
+	<title>Contacto - MedPre Ecuador</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</svelte:head>
 
-  <!-- Contact Info Section -->
-  <section class="contact-info-section">
-    <div class="container">
-      <div class="info-grid">
-        {#each contactInfo as info}
-          <div class="info-card" in:fly={{ y: 50, duration: 1000 }}>
-            <div class="info-icon" style="--card-color: {info.color}">
-              <i class={info.icon}></i>
-            </div>
-            <h3>{info.title}</h3>
-            {#each info.details as detail}
-              <p>{detail}</p>
-            {/each}
-            {#if info.action}
-              <a href={info.action} class="info-action" style="--card-color: {info.color}">
-                {info.actionText}
-                <i class="fas fa-arrow-right"></i>
-              </a>
-            {/if}
-          </div>
-        {/each}
-      </div>
-    </div>
-  </section>
+<main>
+	<!-- Hero Section -->
+	<section class="hero">
+		<div class="hero-background"></div>
+		<div class="hero-overlay"></div>
+		<div class="container">
+			<div class="hero-content" in:fade={{ duration: 1000 }}>
+				<h1>Contáctanos</h1>
+				<p class="hero-subtitle">
+					Estamos aquí para resolver todas tus dudas
+				</p>
+			</div>
+		</div>
+	</section>
 
-  <!-- Contact Form Section -->
-  <section class="form-section">
-    <div class="container">
-      <div class="form-wrapper">
-        <div class="form-content">
-          <h2>Envíenos un Mensaje</h2>
-          <p class="section-subtitle">Complete el formulario y le responderemos a la brevedad</p>
-          
-          <form on:submit|preventDefault={handleSubmit} class="contact-form">
-            <div class="form-grid">
-              <div class="form-group">
-                <label for="name">Nombre Completo</label>
-                <input 
-                  type="text" 
-                  id="name" 
-                  bind:value={formData.name}
-                  required
-                  placeholder="Ingrese su nombre"
-                />
-              </div>
+	<!-- Contact Info Section -->
+	<section class="contact-info">
+		<div class="container">
+			<div class="info-grid">
+				{#each contactInfo as info, index}
+					<div 
+						class="info-card"
+						in:fly={{ y: 50, duration: 1000, delay: index * 200 }}
+					>
+						<div class="info-icon">
+							<i class="fas fa-{info.icon}"></i>
+						</div>
+						<h3>{info.title}</h3>
+						{#if info.link}
+							<a href={info.link} class="info-link">{info.description}</a>
+						{:else}
+							<p>{info.description}</p>
+						{/if}
+					</div>
+				{/each}
+			</div>
+		</div>
+	</section>
 
-              <div class="form-group">
-                <label for="email">Correo Electrónico</label>
-                <input 
-                  type="email" 
-                  id="email" 
-                  bind:value={formData.email}
-                  required
-                  placeholder="ejemplo@correo.com"
-                />
-              </div>
+	<!-- Contact Form Section -->
+	<section class="contact-form">
+		<div class="container">
+			<h2>Envíanos un Mensaje</h2>
+			<div class="form-container" in:fly={{ y: 50, duration: 1000 }}>
+				<form>
+					<div class="form-group">
+						<label for="name">Nombre Completo</label>
+						<input type="text" id="name" required>
+					</div>
+					<div class="form-group">
+						<label for="email">Correo Electrónico</label>
+						<input type="email" id="email" required>
+					</div>
+					<div class="form-group">
+						<label for="phone">Teléfono</label>
+						<input type="tel" id="phone" required>
+					</div>
+					<div class="form-group">
+						<label for="message">Mensaje</label>
+						<textarea id="message" rows="5" required></textarea>
+					</div>
+					<button type="submit" class="btn btn-primary">
+						<i class="fas fa-paper-plane"></i>
+						Enviar Mensaje
+					</button>
+				</form>
+			</div>
+		</div>
+	</section>
 
-              <div class="form-group">
-                <label for="phone">Teléfono</label>
-                <input 
-                  type="tel" 
-                  id="phone" 
-                  bind:value={formData.phone}
-                  required
-                  placeholder="+593 ..."
-                />
-              </div>
-
-              <div class="form-group">
-                <label for="subject">Asunto</label>
-                <input 
-                  type="text" 
-                  id="subject" 
-                  bind:value={formData.subject}
-                  required
-                  placeholder="¿Sobre qué nos quiere consultar?"
-                />
-              </div>
-
-              <div class="form-group full-width">
-                <label for="message">Mensaje</label>
-                <textarea 
-                  id="message" 
-                  bind:value={formData.message}
-                  required
-                  placeholder="Escriba su mensaje aquí..."
-                  rows="5"
-                ></textarea>
-              </div>
-            </div>
-
-            <button type="submit" class="btn btn-primary">
-              Enviar Mensaje
-              <i class="fas fa-paper-plane"></i>
-            </button>
-          </form>
-        </div>
-
-        <div class="form-image">
-          <img 
-            src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80" 
-            alt="Contacto MedPre"
-          />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Map Section -->
-  <section class="map-section">
-    <div class="map-wrapper">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7974113326166!2d-78.4922876!3d-0.1806532!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d59a4002427c9f%3A0x44b991e158ef5572!2sQuito%2C+Ecuador!5e0!3m2!1ses!2sec!4v1234567890"
-        width="100%"
-        height="450"
-        style="border:0;"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
-    </div>
-  </section>
-</div>
+	<!-- CTA Section -->
+	<section class="cta">
+		<div class="container">
+			<div class="cta-content">
+				<h2>¿Prefieres una respuesta inmediata?</h2>
+				<p>Contáctanos directamente por WhatsApp o correo electrónico</p>
+				<div class="cta-buttons">
+					<a href="https://wa.me/593979136217" class="btn btn-primary">
+						<i class="fab fa-whatsapp"></i>
+						WhatsApp (+593) 97 913 6217
+					</a>
+					<a href="mailto:medpre.ecuador@gmail.com" class="btn btn-outline">
+						<i class="fas fa-envelope"></i>
+						medpre.ecuador@gmail.com
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</main>
 
 <style>
-  .contact-page {
-    background: var(--white);
-  }
+	/* Estilos base copiados de la página de inicio */
+	main {
+		margin-top: 0;
+		padding-top: 0;
+		position: relative;
+	}
 
-  /* Hero Section */
-  .hero-section {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                      url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80');
-    background-size: cover;
-    background-position: center;
-    height: 60vh;
-    position: relative;
-    color: var(--white);
-  }
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 1.5rem;
+	}
 
-  .hero-overlay {
-    background: var(--gradient-overlay);
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-  }
+	/* Hero Section */
+	.hero {
+		position: relative;
+		height: 60vh;
+		margin-top: -80px;
+		padding-top: 80px;
+		display: flex;
+		align-items: center;
+		color: var(--color-white);
+		text-align: center;
+		overflow: hidden;
+	}
 
-  .hero-content {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    text-align: center;
-  }
+	.hero-background {
+		position: absolute;
+		top: -80px;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-image: url('https://images.unsplash.com/photo-1579165466741-7f35e4755660?q=80');
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		z-index: -2;
+	}
 
-  .hero-content h1 {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  }
+	.hero-overlay {
+		position: absolute;
+		top: -80px;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: linear-gradient(
+			135deg,
+			rgba(28, 61, 110, 0.95) 0%,
+			rgba(0, 196, 180, 0.85) 100%
+		);
+		z-index: -1;
+	}
 
-  .hero-content .highlight {
-    display: block;
-    font-size: 2rem;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-    opacity: 0.9;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
+	.hero h1 {
+		font-size: 4.5rem;
+		font-weight: 800;
+		margin-bottom: 1.5rem;
+		color: var(--color-white);
+		text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+		line-height: 1.2;
+	}
 
-  .hero-content .main-title {
-    display: block;
-    font-size: 3.5rem;
-    font-weight: 800;
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-  }
+	.hero-subtitle {
+		font-size: 1.75rem;
+		margin-bottom: 2.5rem;
+		opacity: 0.95;
+		text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+	}
 
-  .hero-content p {
-    font-size: 1.25rem;
-    opacity: 0.9;
-    max-width: 600px;
-    margin: 0 auto;
-  }
+	/* Contact Info Section */
+	.contact-info {
+		padding: 6rem 0;
+		background: var(--color-white);
+	}
 
-  /* Contact Info Section */
-  .contact-info-section {
-    margin-top: -100px;
-    position: relative;
-    z-index: 2;
-    padding: 0 0 6rem;
-  }
+	.info-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 2rem;
+	}
 
-  .info-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-  }
+	.info-card {
+		background: white;
+		padding: 2.5rem;
+		border-radius: 1rem;
+		text-align: center;
+		box-shadow: 0 8px 16px rgba(28, 61, 110, 0.1);
+		transition: all 0.3s ease;
+	}
 
-  .info-card {
-    background: var(--white);
-    padding: 2.5rem 2rem;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-  }
+	.info-card:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 12px 24px rgba(28, 61, 110, 0.15);
+	}
 
-  .info-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-  }
+	.info-icon {
+		font-size: 2.5rem;
+		color: var(--color-secondary);
+		margin-bottom: 1.5rem;
+	}
 
-  .info-icon {
-    width: 70px;
-    height: 70px;
-    background: var(--light-bg);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1.5rem;
-    transition: all 0.3s ease;
-    color: var(--primary-color);
-  }
+	.info-card h3 {
+		font-size: 1.5rem;
+		color: var(--color-primary);
+		margin-bottom: 1rem;
+	}
 
-  .info-card:hover .info-icon {
-    background: var(--card-color);
-  }
+	.info-card p,
+	.info-link {
+		font-size: 1.1rem;
+		color: var(--color-text);
+		text-decoration: none;
+		transition: color 0.3s ease;
+	}
 
-  .info-icon i {
-    font-size: 1.8rem;
-    color: var(--card-color);
-    transition: all 0.3s ease;
-  }
+	.info-link:hover {
+		color: var(--color-secondary);
+	}
 
-  .info-card:hover .info-icon i {
-    color: var(--white);
-  }
+	/* Contact Form Section */
+	.contact-form {
+		padding: 6rem 0;
+		background: linear-gradient(135deg, rgba(28, 61, 110, 0.05) 0%, rgba(0, 196, 180, 0.05) 100%);
+	}
 
-  .info-card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-    color: var(--primary-color);
-  }
+	.contact-form h2 {
+		font-size: 3.2rem;
+		font-weight: 800;
+		text-align: center;
+		margin-bottom: 3rem;
+		color: var(--color-primary);
+		position: relative;
+		padding-bottom: 1rem;
+	}
 
-  .info-card p {
-    margin: 0.5rem 0;
-    font-size: 1.1rem;
-    color: var(--text-color);
-  }
+	.contact-form h2::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 80px;
+		height: 4px;
+		background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+		border-radius: 2px;
+	}
 
-  .info-action {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 1.5rem;
-    color: var(--card-color);
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-  }
+	.form-container {
+		max-width: 800px;
+		margin: 0 auto;
+		background: white;
+		padding: 3rem;
+		border-radius: 1rem;
+		box-shadow: 0 8px 16px rgba(28, 61, 110, 0.1);
+	}
 
-  .info-action:hover {
-    gap: 1rem;
-    opacity: 0.8;
-  }
+	.form-group {
+		margin-bottom: 1.5rem;
+	}
 
-  /* Form Section */
-  .form-section {
-    padding: 8rem 0;
-    background: var(--white);
-    position: relative;
-  }
+	label {
+		display: block;
+		font-size: 1.1rem;
+		color: var(--color-primary);
+		margin-bottom: 0.5rem;
+	}
 
-  .form-wrapper {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 4rem;
-    align-items: center;
-  }
+	input,
+	textarea {
+		width: 100%;
+		padding: 1rem;
+		border: 2px solid rgba(28, 61, 110, 0.1);
+		border-radius: 0.5rem;
+		font-size: 1.1rem;
+		transition: all 0.3s ease;
+	}
 
-  .form-content h2 {
-    font-size: 2.5rem;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-  }
+	input:focus,
+	textarea:focus {
+		outline: none;
+		border-color: var(--color-secondary);
+		box-shadow: 0 0 0 3px rgba(0, 196, 180, 0.1);
+	}
 
-  .section-subtitle {
-    font-size: 1.2rem;
-    color: var(--text-color);
-    margin-bottom: 3rem;
-    opacity: 0.8;
-  }
+	/* CTA Section */
+	.cta {
+		background: linear-gradient(135deg, #1C3D6E 0%, #00C4B4 100%);
+		color: var(--color-white);
+		text-align: center;
+		padding: 6rem 0;
+	}
 
-  .form-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-  }
+	.cta h2 {
+		font-size: 3.2rem;
+		font-weight: 800;
+		color: var(--color-white);
+		margin-bottom: 1.5rem;
+	}
 
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-  }
+	.cta p {
+		font-size: 1.2rem;
+		margin-bottom: 2rem;
+		opacity: 0.9;
+	}
 
-  .form-group.full-width {
-    grid-column: 1 / -1;
-  }
+	.cta-buttons {
+		display: flex;
+		gap: 1.5rem;
+		justify-content: center;
+		margin-top: 3rem;
+	}
 
-  label {
-    color: var(--text-color);
-    font-weight: 600;
-    font-size: 1.1rem;
-  }
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.75rem;
+		padding: 1rem 2rem;
+		font-size: 1.1rem;
+		font-weight: 600;
+		border-radius: 0.5rem;
+		transition: all 0.3s ease;
+		text-decoration: none;
+		border: none;
+		cursor: pointer;
+	}
 
-  input,
-  textarea {
-    padding: 1rem;
-    border: 2px solid var(--light-bg);
-    border-radius: 10px;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    font-family: inherit;
-  }
+	.btn-primary {
+		background: var(--color-white);
+		color: var(--color-primary);
+	}
 
-  input:focus,
-  textarea:focus {
-    border-color: var(--primary-color);
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(12, 186, 184, 0.1);
-  }
+	.btn-outline {
+		border: 2px solid var(--color-white);
+		color: var(--color-white);
+	}
 
-  textarea {
-    resize: vertical;
-    min-height: 120px;
-  }
+	.btn:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+	}
 
-  .form-image {
-    position: relative;
-  }
+	/* Responsive */
+	@media (max-width: 768px) {
+		.hero h1 {
+			font-size: 3rem;
+		}
 
-  .form-image img {
-    width: 100%;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  }
+		.hero-subtitle {
+			font-size: 1.25rem;
+		}
 
-  .form-image::before {
-    content: '';
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    right: -20px;
-    bottom: -20px;
-    border: 2px solid var(--primary-color);
-    border-radius: 20px;
-    z-index: -1;
-    opacity: 0.1;
-  }
+		.info-grid {
+			grid-template-columns: 1fr;
+		}
 
-  /* Map Section */
-  .map-section {
-    padding: 0;
-    background: var(--light-bg);
-  }
+		.form-container {
+			padding: 2rem;
+		}
 
-  .map-wrapper {
-    height: 450px;
-    overflow: hidden;
-  }
+		.cta-buttons {
+			flex-direction: column;
+		}
 
-  .map-wrapper iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
-
-  /* Button Styles */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.8rem;
-    padding: 1.2rem 3rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .btn-primary {
-    background: var(--primary-color);
-    color: var(--white);
-  }
-
-  .btn-primary:hover {
-    background: var(--secondary-color);
-    transform: translateY(-2px);
-  }
-
-  /* Responsive Design */
-  @media (max-width: 1200px) {
-    .info-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (max-width: 968px) {
-    .form-wrapper {
-      grid-template-columns: 1fr;
-    }
-
-    .form-image {
-      display: none;
-    }
-
-    .hero-content .main-title {
-      font-size: 3rem;
-    }
-  }
-
-  @media (max-width: 576px) {
-    .info-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .form-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .hero-content .main-title {
-      font-size: 2.5rem;
-    }
-
-    .hero-content .highlight {
-      font-size: 1.5rem;
-    }
-  }
+		.btn {
+			width: 100%;
+			justify-content: center;
+		}
+	}
 </style> 

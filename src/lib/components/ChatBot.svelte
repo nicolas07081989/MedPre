@@ -1,17 +1,23 @@
 <script>
   let isOpen = false;
+  
+  function toggleChat() {
+    isOpen = !isOpen;
+  }
 </script>
 
 <div class="chatbot {isOpen ? 'open' : ''}">
-  <button class="chat-toggle" on:click={() => isOpen = !isOpen}>
-    <i class="fas fa-comments"></i>
-  </button>
+  <div class="chatbot-button">
+    <button on:click={toggleChat}>
+      <img src="/icons/misc/chatbot.svg" alt="Chat" class="chatbot-icon" />
+    </button>
+  </div>
   
   {#if isOpen}
     <div class="chat-window">
       <div class="chat-header">
         <h3>Chat con MedPre</h3>
-        <button on:click={() => isOpen = false}>
+        <button on:click={toggleChat}>
           <i class="fas fa-times"></i>
         </button>
       </div>
@@ -48,5 +54,11 @@
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .chatbot-icon {
+    width: 24px;
+    height: 24px;
+    filter: invert(100%);
   }
 </style> 

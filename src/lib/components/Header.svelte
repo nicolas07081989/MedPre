@@ -1,310 +1,222 @@
-<script>
-  import { page } from '$app/stores';
-  import { fly } from 'svelte/transition';
-  import { base } from '$app/paths';
-  
-  let isMenuOpen = false;
+<script lang="ts">
+	import { page } from '$app/stores';
+	import { slide } from 'svelte/transition';
+	let isMenuOpen = false;
 
-  const menuItems = [
-    { id: "home", label: "Inicio", href: "/" },
-    { id: "about", label: "Quiénes Somos", href: "/quienes-somos" },
-    { id: "answers", label: "Respuestas", href: "/respuestas" },
-    { id: "advantages", label: "Ventajas", href: "/ventajas" },
-    { id: "investment", label: "Inversión", href: "/inversion" },
-    { id: "contact", label: "Contacto", href: "/contacto" }
-  ];
-
-  function handleNavigation(event, item) {
-    event.preventDefault();
-    if (item.href.startsWith('/#')) {
-      const id = item.href.replace('/#', '');
-      const element = document.getElementById(id);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    } else {
-      window.location.href = item.href;
-    }
-    isMenuOpen = false;
-  }
-
-  $: isActive = (href) => $page.url.pathname === href || ($page.url.pathname === '/' && href === '/');
+	const menuItems = [
+		{ href: '/', label: 'Inicio' },
+		{ href: '/quienes-somos', label: 'Quiénes Somos' },
+		{ href: '/respuestas', label: 'Respuestas' },
+		{ href: '/ventajas', label: 'Ventajas' },
+		{ href: '/inversion', label: 'Inversión' },
+		{ href: '/contacto', label: 'Contacto' }
+	];
 </script>
 
 <header class="header">
-  <div class="header-content">
-    <div class="logo">
-      <a href="{base}/" class="logo-link">
-        <img src="{base}/assets/Logo_Color.png" alt="MedPre Logo" class="logo-image" />
-      </a>
-    </div>
+	<div class="container">
+		<div class="header-content">
+			<a href="/" class="logo">
+				<img 
+					src="/logo-color.png" 
+					alt="MedPre - Medicina de Precisión Ecuador" 
+					class="logo-image"
+				/>
+			</a>
 
-    <nav class="desktop-menu">
-      {#each menuItems as item}
-        <a 
-          href={item.href}
-          class="nav-link {isActive(item.href) ? 'active' : ''}"
-          on:click={(event) => handleNavigation(event, item)}
-        >
-          {item.label}
-          {#if isActive(item.href)}
-            <span class="active-indicator"></span>
-          {/if}
-        </a>
-      {/each}
-    </nav>
+			<!-- Desktop Menu -->
+			<nav class="desktop-menu">
+				{#each menuItems as { href, label }}
+					<a
+						{href}
+						class="nav-link {$page.url.pathname === href ? 'active' : ''}"
+					>
+						{label}
+					</a>
+				{/each}
+			</nav>
 
-    <button 
-      class="mobile-menu-button" 
-      on:click={() => isMenuOpen = !isMenuOpen}
-      aria-label="Menu"
-    >
-      <span class="hamburger {isMenuOpen ? 'open' : ''}"></span>
-    </button>
-  </div>
+			<!-- Mobile Menu Button -->
+			<button 
+				class="mobile-menu-btn" 
+				on:click={() => (isMenuOpen = !isMenuOpen)}
+				aria-label="Menu"
+			>
+				<div class="hamburger" class:open={isMenuOpen}>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</button>
+		</div>
 
-  {#if isMenuOpen}
-    <nav class="mobile-menu" transition:fly={{ y: -20, duration: 300 }}>
-      {#each menuItems as item}
-        <a 
-          href={item.href}
-          class="nav-link {isActive(item.href) ? 'active' : ''}"
-          on:click={(event) => handleNavigation(event, item)}
-        >
-          {item.label}
-        </a>
-      {/each}
-    </nav>
-  {/if}
+		<!-- Mobile Menu -->
+		{#if isMenuOpen}
+			<nav class="mobile-menu" transition:slide>
+				{#each menuItems as { href, label }}
+					<a
+						{href}
+						class="mobile-link {$page.url.pathname === href ? 'active' : ''}"
+						on:click={() => (isMenuOpen = false)}
+					>
+						{label}
+					</a>
+				{/each}
+			</nav>
+		{/if}
+	</div>
 </header>
 
 <style>
-  .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: var(--white);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-  }
+	.header {
+		background: var(--color-white);
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 1000;
+		height: 80px;
+	}
 
-  .header-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+	.container {
+		max-width: 1400px;
+		margin: 0 auto;
+		padding: 0 2rem;
+		height: 100%;
+	}
 
-  .logo {
-    display: flex;
-    align-items: center;
-  }
+	.header-content {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		height: 100%;
+		position: relative;
+	}
 
-  .logo-link {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-  }
+	.logo {
+		display: flex;
+		align-items: center;
+	}
 
-  .logo-image {
-    height: 60px;
-    width: auto;
-    object-fit: contain;
-    transition: all 0.3s ease;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-  }
+	.logo-image {
+		height: 55px;
+		width: auto;
+	}
 
-  .logo-link:hover .logo-image {
-    transform: scale(1.02);
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
-  }
+	.desktop-menu {
+		display: none;
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		white-space: nowrap;
+	}
 
-  .logo-image path {
-    transition: all 0.3s ease;
-  }
+	@media (min-width: 768px) {
+		.desktop-menu {
+			display: flex;
+			gap: 3rem;
+			align-items: center;
+		}
+	}
 
-  .logo-link:hover .logo-image path {
-    stroke-width: 22px;
-  }
+	.nav-link {
+		color: var(--color-primary);
+		text-decoration: none;
+		font-weight: 500;
+		padding: 0.75rem 0;
+		position: relative;
+		transition: all 0.3s ease;
+		font-size: 1.05rem;
+		white-space: nowrap;
+	}
 
-  .logo-image text {
-    transition: all 0.3s ease;
-  }
+	.nav-link::after {
+		content: '';
+		position: absolute;
+		bottom: -2px;
+		left: 0;
+		width: 0;
+		height: 2px;
+		background: var(--color-secondary);
+		transition: width 0.3s ease;
+	}
 
-  .logo-link:hover .logo-image text {
-    filter: brightness(1.1);
-  }
+	.nav-link:hover::after,
+	.nav-link.active::after {
+		width: 100%;
+	}
 
-  .brand-name {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: var(--primary-color);
-  }
+	.nav-link:hover,
+	.nav-link.active {
+		color: var(--color-secondary);
+	}
 
-  .desktop-menu {
-    display: flex;
-    gap: 1rem;
-  }
+	/* Mobile Menu Button */
+	.mobile-menu-btn {
+		display: block;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 0;
+	}
 
-  .nav-link {
-    position: relative;
-    padding: 0.8rem 1.2rem;
-    color: var(--text-color);
-    font-size: 1rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    border-radius: 8px;
-    font-family: var(--font-primary);
-    font-weight: var(--font-weight-medium);
-  }
+	@media (min-width: 768px) {
+		.mobile-menu-btn {
+			display: none;
+		}
+	}
 
-  .nav-link:hover {
-    color: var(--secondary-color);
-    background: rgba(12, 186, 184, 0.1);
-  }
+	.hamburger {
+		width: 24px;
+		height: 20px;
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
 
-  .nav-link.active {
-    color: var(--primary-color);
-    font-weight: var(--font-weight-semibold);
-    background: rgba(12, 186, 184, 0.1);
-  }
+	.hamburger span {
+		display: block;
+		width: 100%;
+		height: 2px;
+		background: var(--color-primary);
+		transition: all 0.3s ease;
+	}
 
-  .active-indicator {
-    position: absolute;
-    bottom: -2px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 24px;
-    height: 3px;
-    background: var(--secondary-color);
-    border-radius: 2px;
-  }
+	.hamburger.open span:first-child {
+		transform: rotate(45deg);
+	}
 
-  .mobile-menu-button {
-    display: none;
-    background: none;
-    border: none;
-    padding: 1rem;
-    cursor: pointer;
-  }
+	.hamburger.open span:nth-child(2) {
+		opacity: 0;
+	}
 
-  .hamburger {
-    display: block;
-    width: 24px;
-    height: 2px;
-    background: var(--text-color);
-    position: relative;
-    transition: all 0.3s ease;
-  }
+	.hamburger.open span:last-child {
+		transform: rotate(-45deg);
+	}
 
-  .hamburger::before,
-  .hamburger::after {
-    content: '';
-    position: absolute;
-    width: 24px;
-    height: 2px;
-    background: var(--text-color);
-    transition: all 0.3s ease;
-  }
+	/* Mobile Menu */
+	.mobile-menu {
+		position: absolute;
+		top: 75px;
+		left: 0;
+		right: 0;
+		background: var(--color-white);
+		padding: 1rem;
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	}
 
-  .hamburger::before {
-    top: -8px;
-  }
+	.mobile-link {
+		display: block;
+		padding: 0.75rem 1rem;
+		color: var(--color-primary);
+		text-decoration: none;
+		transition: all 0.3s ease;
+	}
 
-  .hamburger::after {
-    bottom: -8px;
-  }
-
-  .hamburger.open {
-    background: transparent;
-  }
-
-  .hamburger.open::before {
-    transform: rotate(45deg);
-    top: 0;
-  }
-
-  .hamburger.open::after {
-    transform: rotate(-45deg);
-    bottom: 0;
-  }
-
-  .mobile-menu {
-    display: none;
-    padding: 1rem;
-    background: var(--white);
-    border-top: 1px solid var(--light-bg);
-  }
-
-  @media (max-width: 1024px) {
-    .header-content {
-      padding: 1rem;
-    }
-
-    .nav-link {
-      padding: 0.6rem 1rem;
-      font-size: 0.95rem;
-    }
-
-    .logo-image {
-      height: 50px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .desktop-menu {
-      display: none;
-    }
-
-    .mobile-menu-button {
-      display: block;
-    }
-
-    .mobile-menu {
-      display: flex;
-      flex-direction: column;
-      padding: 1rem;
-    }
-
-    .mobile-menu .nav-link {
-      padding: 1rem;
-      width: 100%;
-      text-align: left;
-      border-radius: 8px;
-    }
-
-    .logo-image {
-      height: 45px;
-    }
-  }
-
-  @media (max-width: 576px) {
-    .header-content {
-      padding: 0.8rem;
-    }
-
-    .logo-image {
-      height: 40px;
-    }
-  }
-
-  .logo-link {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    text-decoration: none;
-  }
-
-  .nav-link {
-    text-decoration: none;
-    /* ... resto de estilos existentes para nav-link ... */
-  }
-
-  button.nav-link {
-    font-family: inherit;
-  }
+	.mobile-link:hover,
+	.mobile-link.active {
+		background: var(--color-accent);
+	}
 </style> 

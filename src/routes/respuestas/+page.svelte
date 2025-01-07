@@ -1,457 +1,379 @@
 <script>
-  import { slide } from 'svelte/transition';
+	import { fade, fly } from 'svelte/transition';
 
-  const faqs = [
-    {
-      category: "Diagnóstico",
-      questions: [
-        {
-          question: "¿Qué es un nódulo tiroideo indeterminado?",
-          answer: "Un nódulo tiroideo indeterminado es aquel que, tras una biopsia inicial (PAAF), no puede ser clasificado definitivamente como benigno o maligno. Corresponde a las categorías III y IV del sistema Bethesda."
-        },
-        {
-          question: "¿Por qué necesito un estudio molecular?",
-          answer: "El estudio molecular proporciona información genética crucial sobre el comportamiento del nódulo, permitiendo una evaluación más precisa del riesgo de malignidad y ayudando a evitar cirugías innecesarias."
-        }
-      ]
-    },
-    {
-      category: "Proceso",
-      questions: [
-        {
-          question: "¿Se necesita una nueva biopsia?",
-          answer: "No, utilizamos la misma muestra de tu primera punción (PAAF). Esto evita procedimientos adicionales y hace el proceso más cómodo para el paciente."
-        },
-        {
-          question: "¿Cuánto tiempo toma obtener resultados?",
-          answer: "Los resultados están disponibles en menos de 48 horas después de recibir la muestra en nuestro laboratorio."
-        }
-      ]
-    },
-    {
-      category: "Precisión",
-      questions: [
-        {
-          question: "¿Qué tan preciso es el estudio?",
-          answer: "Nuestro estudio molecular tiene una precisión superior al 96%, lo que nos permite ofrecer diagnósticos altamente confiables."
-        },
-        {
-          question: "¿Qué pasa si el resultado es indeterminado?",
-          answer: "En el raro caso de un resultado indeterminado, ofrecemos una segunda opinión sin costo adicional y consulta con nuestros especialistas."
-        }
-      ]
-    }
-  ];
-
-  let activeCategory = "Diagnóstico";
-  let activeQuestion = null;
-
-  function setActiveQuestion(question) {
-    activeQuestion = activeQuestion === question ? null : question;
-  }
+	// Lista de preguntas frecuentes
+	const faqs = [
+		{
+			question: '¿Qué es el estudio molecular MIR-THYPE Full?',
+			answer: 'Es un estudio de precisión que analiza nódulos tiroideos para determinar con alta precisión la probabilidad de malignidad, ayudando a evitar cirugías innecesarias.'
+		},
+		{
+			question: '¿Cómo se obtiene la muestra para el estudio?',
+			answer: 'Se utiliza la misma muestra de la primera punción (PAAF) realizada para el diagnóstico citológico, no se requieren punciones adicionales.'
+		},
+		{
+			question: '¿Cuánto tiempo toma obtener los resultados?',
+			answer: 'Los resultados están disponibles en menos de un mes, permitiendo una toma de decisiones oportuna.'
+		},
+		{
+			question: '¿Qué tan preciso es el estudio?',
+			answer: 'El estudio tiene un valor predictivo negativo del 96%, lo que significa una alta precisión en la detección de casos benignos.'
+		},
+		{
+			question: '¿El estudio está avalado internacionalmente?',
+			answer: 'Sí, el estudio está respaldado por consenso internacional y asociaciones médicas reconocidas.'
+		}
+	];
 </script>
 
-<div class="answers-page">
-  <!-- Hero Section -->
-  <section class="hero-section">
-    <div class="hero-overlay">
-      <div class="container">
-        <div class="hero-content">
-          <h1>
-            <span class="highlight">Respuestas Claras</span>
-            <span class="main-title">para su Tranquilidad</span>
-          </h1>
-          <p>Resolvemos sus dudas sobre el diagnóstico molecular de tiroides</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<svelte:head>
+	<title>Respuestas - MedPre Ecuador</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</svelte:head>
 
-  <!-- Proceso Section -->
-  <section class="process-section">
-    <div class="container">
-      <h2 class="section-title">Proceso Diagnóstico</h2>
-      <p class="section-subtitle">Conoce nuestro enfoque paso a paso</p>
-      
-      <div class="process-timeline">
-        <div class="timeline-item">
-          <div class="timeline-icon">
-            <i class="fas fa-file-medical"></i>
-          </div>
-          <div class="timeline-content">
-            <h3>1. Evaluación Inicial</h3>
-            <p>Revisión de tu historial médico y resultados previos de PAAF</p>
-          </div>
-        </div>
+<main>
+	<!-- Hero Section -->
+	<section class="hero">
+		<div class="hero-background"></div>
+		<div class="hero-overlay"></div>
+		<div class="container">
+			<div class="hero-content" in:fade={{ duration: 1000 }}>
+				<h1>Preguntas Frecuentes</h1>
+				<p class="hero-subtitle">
+					Resolvemos tus dudas sobre el diagnóstico molecular de precisión
+				</p>
+			</div>
+		</div>
+	</section>
 
-        <div class="timeline-item">
-          <div class="timeline-icon">
-            <i class="fas fa-dna"></i>
-          </div>
-          <div class="timeline-content">
-            <h3>2. Análisis Molecular</h3>
-            <p>Estudio molecular avanzado con tecnología de última generación</p>
-          </div>
-        </div>
+	<!-- FAQ Section -->
+	<section class="faq">
+		<div class="container">
+			<div class="faq-grid">
+				{#each faqs as faq, index}
+					<div 
+						class="faq-card"
+						in:fly={{ y: 50, duration: 1000, delay: index * 200 }}
+					>
+						<div class="faq-icon">
+							<i class="fas fa-question-circle"></i>
+						</div>
+						<h3>{faq.question}</h3>
+						<p>{faq.answer}</p>
+					</div>
+				{/each}
+			</div>
+		</div>
+	</section>
 
-        <div class="timeline-item">
-          <div class="timeline-icon">
-            <i class="fas fa-microscope"></i>
-          </div>
-          <div class="timeline-content">
-            <h3>3. Interpretación</h3>
-            <p>Análisis exhaustivo por nuestro equipo de especialistas</p>
-          </div>
-        </div>
+	<!-- Información Adicional -->
+	<section class="additional-info">
+		<div class="container">
+			<h2>Información Importante</h2>
+			<div class="info-cards">
+				<div class="info-card">
+					<div class="info-icon">
+						<i class="fas fa-clipboard-check"></i>
+					</div>
+					<h3>Proceso Simple</h3>
+					<p>No requiere procedimientos adicionales, utilizamos la muestra inicial de la punción.</p>
+				</div>
+				<div class="info-card">
+					<div class="info-icon">
+						<i class="fas fa-user-md"></i>
+					</div>
+					<h3>Consulta Gratuita</h3>
+					<p>Incluye asesoría con especialistas para interpretar los resultados.</p>
+				</div>
+			</div>
+		</div>
+	</section>
 
-        <div class="timeline-item">
-          <div class="timeline-icon">
-            <i class="fas fa-user-md"></i>
-          </div>
-          <div class="timeline-content">
-            <h3>4. Consulta Personalizada</h3>
-            <p>Explicación detallada y recomendaciones específicas</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ Section -->
-  <section class="faq-section">
-    <div class="container">
-      <h2 class="section-title">Preguntas Frecuentes</h2>
-      <p class="section-subtitle">Todo lo que necesita saber sobre nuestro servicio</p>
-
-      <div class="faq-container">
-        <div class="faq-categories">
-          {#each faqs as category}
-            <button 
-              class="category-btn {activeCategory === category.category ? 'active' : ''}"
-              on:click={() => activeCategory = category.category}
-            >
-              {category.category}
-            </button>
-          {/each}
-        </div>
-
-        <div class="faq-content">
-          {#each faqs.find(cat => cat.category === activeCategory).questions as question}
-            <div class="faq-item">
-              <button 
-                class="faq-question {activeQuestion === question ? 'active' : ''}"
-                on:click={() => setActiveQuestion(question)}
-              >
-                {question.question}
-                <i class="fas fa-chevron-down"></i>
-              </button>
-              {#if activeQuestion === question}
-                <div class="faq-answer" transition:slide>
-                  <p>{question.answer}</p>
-                </div>
-              {/if}
-            </div>
-          {/each}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="cta-section">
-    <div class="container">
-      <div class="cta-content">
-        <h2>¿Tiene más preguntas?</h2>
-        <p>Nuestro equipo está disponible para resolver todas sus dudas</p>
-        <div class="cta-buttons">
-          <a href="/contacto" class="btn btn-primary">
-            <i class="fas fa-envelope"></i>
-            Contactar Ahora
-          </a>
-          <a href="tel:+59397913621" class="btn btn-outline">
-            <i class="fas fa-phone"></i>
-            Llamar
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
+	<!-- CTA Section -->
+	<section class="cta">
+		<div class="container">
+			<div class="cta-content">
+				<h2>¿Tienes más preguntas?</h2>
+				<p>Nuestro equipo está disponible para resolver todas tus dudas</p>
+				<div class="cta-buttons">
+					<a href="https://wa.me/593979136217" class="btn btn-primary">
+						<i class="fab fa-whatsapp"></i>
+						WhatsApp (+593) 97 913 6217
+					</a>
+					<a href="mailto:medpre.ecuador@gmail.com" class="btn btn-outline">
+						<i class="fas fa-envelope"></i>
+						medpre.ecuador@gmail.com
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</main>
 
 <style>
-  .answers-page {
-    background: var(--white);
-  }
+	/* Estilos base copiados de la página de inicio */
+	main {
+		margin-top: 0;
+		padding-top: 0;
+		position: relative;
+	}
 
-  /* Hero Section */
-  .hero-section {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-                      url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80');
-    background-size: cover;
-    background-position: center;
-    height: 60vh;
-    position: relative;
-    color: var(--white);
-  }
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 1.5rem;
+	}
 
-  .hero-overlay {
-    background: var(--gradient-overlay);
-    height: 100%;
-    display: flex;
-    align-items: center;
-  }
+	/* Hero Section con los mismos estilos que inicio */
+	.hero {
+		position: relative;
+		height: 60vh;
+		margin-top: -80px;
+		padding-top: 80px;
+		display: flex;
+		align-items: center;
+		color: var(--color-white);
+		text-align: center;
+		overflow: hidden;
+	}
 
-  .hero-content {
-    max-width: 800px;
-    padding: 2rem;
-  }
+	.hero-background {
+		position: absolute;
+		top: -80px;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-image: url('https://images.unsplash.com/photo-1579165466741-7f35e4755660?q=80');
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		z-index: -2;
+	}
 
-  .hero-content h1 {
-    font-size: 3.5rem;
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
-  }
+	.hero-overlay {
+		position: absolute;
+		top: -80px;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: linear-gradient(
+			135deg,
+			rgba(28, 61, 110, 0.95) 0%,
+			rgba(0, 196, 180, 0.85) 100%
+		);
+		z-index: -1;
+	}
 
-  .hero-content .highlight {
-    display: block;
-    font-size: 2rem;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-  }
+	.hero h1 {
+		font-size: 4.5rem;
+		font-weight: 800;
+		margin-bottom: 1.5rem;
+		color: var(--color-white);
+		text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+		line-height: 1.2;
+	}
 
-  .hero-content .main-title {
-    display: block;
-    font-weight: 800;
-  }
+	.hero-subtitle {
+		font-size: 1.75rem;
+		margin-bottom: 2.5rem;
+		opacity: 0.95;
+		text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+	}
 
-  .hero-content p {
-    font-size: 1.25rem;
-    opacity: 0.9;
-  }
+	/* FAQ Section */
+	.faq {
+		padding: 6rem 0;
+		background: var(--color-white);
+	}
 
-  /* Process Section */
-  .process-section {
-    padding: 8rem 0;
-    background: var(--white);
-    margin-top: -60px;
-    border-radius: 30px 30px 0 0;
-    position: relative;
-  }
+	.faq-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 2rem;
+	}
 
-  .process-timeline {
-    max-width: 800px;
-    margin: 4rem auto 0;
-    position: relative;
-  }
+	.faq-card {
+		background: white;
+		padding: 2.5rem;
+		border-radius: 1rem;
+		box-shadow: 0 8px 16px rgba(28, 61, 110, 0.1);
+		transition: all 0.3s ease;
+	}
 
-  .process-timeline::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 100%;
-    background: var(--primary-color);
-    opacity: 0.2;
-  }
+	.faq-card:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 12px 24px rgba(28, 61, 110, 0.15);
+	}
 
-  .timeline-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 3rem;
-    position: relative;
-  }
+	.faq-icon {
+		font-size: 2.5rem;
+		background: linear-gradient(135deg, #1C3D6E 0%, #00C4B4 100%);
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+		margin-bottom: 1.5rem;
+	}
 
-  .timeline-icon {
-    width: 60px;
-    height: 60px;
-    background: var(--primary-color);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.5rem;
-    flex-shrink: 0;
-    position: relative;
-    z-index: 1;
-    box-shadow: 0 0 0 10px var(--white);
-  }
+	.faq-card h3 {
+		font-size: 1.8rem;
+		color: var(--color-primary);
+		margin-bottom: 1rem;
+		font-weight: 700;
+	}
 
-  .timeline-content {
-    flex: 1;
-    margin-left: 2rem;
-    background: var(--light-bg);
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  }
+	.faq-card p {
+		font-size: 1.1rem;
+		line-height: 1.6;
+		color: var(--color-text);
+	}
 
-  .timeline-content h3 {
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-    font-size: 1.3rem;
-  }
+	/* Información Adicional */
+	.additional-info {
+		background: linear-gradient(135deg, rgba(28, 61, 110, 0.05) 0%, rgba(0, 196, 180, 0.05) 100%);
+		padding: 6rem 0;
+	}
 
-  /* FAQ Section */
-  .faq-section {
-    padding: 8rem 0;
-    background: var(--light-bg);
-  }
+	.additional-info h2 {
+		font-size: 3.2rem;
+		font-weight: 800;
+		text-align: center;
+		margin-bottom: 3rem;
+		color: var(--color-primary);
+		position: relative;
+		padding-bottom: 1rem;
+	}
 
-  .faq-container {
-    max-width: 900px;
-    margin: 4rem auto 0;
-  }
+	.additional-info h2::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 80px;
+		height: 4px;
+		background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+		border-radius: 2px;
+	}
 
-  .faq-categories {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 3rem;
-  }
+	.info-cards {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 3rem;
+		margin-top: 3rem;
+	}
 
-  .category-btn {
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 30px;
-    background: var(--white);
-    color: var(--text-color);
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
+	.info-card {
+		background: white;
+		padding: 2.5rem;
+		border-radius: 1rem;
+		box-shadow: 0 8px 16px rgba(28, 61, 110, 0.1);
+		transition: all 0.3s ease;
+		text-align: center;
+	}
 
-  .category-btn.active {
-    background: var(--primary-color);
-    color: var(--white);
-  }
+	.info-card:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 12px 24px rgba(28, 61, 110, 0.15);
+	}
 
-  .faq-item {
-    background: var(--white);
-    border-radius: 10px;
-    margin-bottom: 1rem;
-    overflow: hidden;
-  }
+	.info-icon {
+		font-size: 3rem;
+		color: var(--color-secondary);
+		margin-bottom: 1.5rem;
+	}
 
-  .faq-question {
-    width: 100%;
-    padding: 1.5rem;
-    text-align: left;
-    background: none;
-    border: none;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-color);
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+	.info-card h3 {
+		font-size: 1.8rem;
+		color: var(--color-primary);
+		margin-bottom: 1rem;
+		font-weight: 700;
+	}
 
-  .faq-question i {
-    transition: transform 0.3s ease;
-  }
+	.info-card p {
+		font-size: 1.1rem;
+		line-height: 1.6;
+	}
 
-  .faq-question.active i {
-    transform: rotate(180deg);
-  }
+	/* CTA Section */
+	.cta {
+		background: linear-gradient(135deg, #1C3D6E 0%, #00C4B4 100%);
+		color: var(--color-white);
+		text-align: center;
+		padding: 6rem 0;
+	}
 
-  .faq-answer {
-    padding: 0 1.5rem 1.5rem;
-    color: var(--text-color);
-    line-height: 1.6;
-  }
+	.cta h2 {
+		font-size: 3.2rem;
+		font-weight: 800;
+		color: var(--color-white);
+		margin-bottom: 1.5rem;
+	}
 
-  /* CTA Section */
-  .cta-section {
-    background: var(--primary-color);
-    color: var(--white);
-    padding: 6rem 0;
-    text-align: center;
-  }
+	.cta p {
+		font-size: 1.2rem;
+		margin-bottom: 2rem;
+		opacity: 0.9;
+	}
 
-  .cta-content h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
+	.cta-buttons {
+		display: flex;
+		gap: 1.5rem;
+		justify-content: center;
+		margin-top: 3rem;
+	}
 
-  .cta-content p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    opacity: 0.9;
-  }
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.75rem;
+		padding: 1rem 2rem;
+		font-size: 1.1rem;
+		font-weight: 600;
+		border-radius: 0.5rem;
+		transition: all 0.3s ease;
+		text-decoration: none;
+	}
 
-  .cta-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-  }
+	.btn-primary {
+		background: var(--color-white);
+		color: var(--color-primary);
+	}
 
-  /* Responsive Design */
-  @media (max-width: 968px) {
-    .hero-content h1 {
-      font-size: 2.5rem;
-    }
+	.btn-outline {
+		border: 2px solid var(--color-white);
+		color: var(--color-white);
+	}
 
-    .hero-content .highlight {
-      font-size: 1.5rem;
-    }
+	.btn:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+	}
 
-    .process-timeline::before {
-      left: 30px;
-    }
+	/* Responsive */
+	@media (max-width: 768px) {
+		.hero h1 {
+			font-size: 3rem;
+		}
 
-    .timeline-item {
-      flex-direction: column;
-      align-items: flex-start;
-      padding-left: 60px;
-    }
+		.hero-subtitle {
+			font-size: 1.25rem;
+		}
 
-    .timeline-icon {
-      position: absolute;
-      left: 0;
-      top: 0;
-    }
+		.info-cards {
+			grid-template-columns: 1fr;
+		}
 
-    .timeline-content {
-      margin-left: 0;
-      margin-top: 1.5rem;
-      width: 100%;
-    }
+		.faq-grid {
+			grid-template-columns: 1fr;
+		}
 
-    .faq-categories {
-      flex-wrap: wrap;
-    }
-  }
+		.cta-buttons {
+			flex-direction: column;
+		}
 
-  @media (max-width: 576px) {
-    .hero-content h1 {
-      font-size: 2rem;
-    }
-
-    .cta-buttons {
-      flex-direction: column;
-    }
-
-    .btn {
-      width: 100%;
-    }
-
-    .category-btn {
-      width: 100%;
-    }
-  }
-
-  .timeline-icon:hover {
-    background: var(--secondary-color);
-  }
-
-  .category-btn.active {
-    background: var(--primary-color);
-  }
-
-  .faq-question.active {
-    color: var(--primary-color);
-  }
+		.btn {
+			width: 100%;
+			justify-content: center;
+		}
+	}
 </style> 
