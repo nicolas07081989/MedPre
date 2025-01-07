@@ -3,7 +3,7 @@
 
 	const contactInfo = [
 		{
-			icon: 'whatsapp',
+			icon: 'brands/whatsapp',
 			title: 'WhatsApp',
 			description: '(+593) 97 913 6217',
 			link: 'https://wa.me/593979136217'
@@ -57,7 +57,9 @@
 						in:fly={{ y: 50, duration: 1000, delay: index * 200 }}
 					>
 						<div class="info-icon">
-							<i class="fas fa-{info.icon}"></i>
+							<i class={info.icon.includes('brands/') ? 
+								`fab fa-${info.icon.split('/')[1]}` : 
+								`fas fa-${info.icon}`}></i>
 						</div>
 						<h3>{info.title}</h3>
 						{#if info.link}

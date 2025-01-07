@@ -51,4 +51,27 @@
     color: var(--primary-color);
     font-weight: var(--font-weight-semibold);
   }
+
+  .testimonials-container {
+    display: grid;
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  @media screen and (max-width: 768px) {
+    .testimonials-container {
+      grid-template-columns: 1fr;
+      padding: 1rem;
+    }
+
+    .testimonial-card {
+      padding: 1rem;
+    }
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+    .testimonials-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
 </style> 
