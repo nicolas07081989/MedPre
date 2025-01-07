@@ -1,69 +1,95 @@
 <script>
-	const socialLinks = [
-		{ name: 'Facebook', icon: '/icons/social/facebook.svg', url: '#' },
-		{ name: 'Twitter', icon: '/icons/social/twitter.svg', url: '#' },
-		{ name: 'Instagram', icon: '/icons/social/instagram.svg', url: '#' },
-		{ name: 'LinkedIn', icon: '/icons/social/linkedin.svg', url: '#' },
-		{ name: 'WhatsApp', icon: '/icons/social/whatsapp.svg', url: '#' }
-	];
+	import { fade } from 'svelte/transition';
+	import { onMount } from 'svelte';
+
+	let year = new Date().getFullYear();
+	let isVisible = false;
+
+	onMount(() => {
+		isVisible = true;
+	});
 </script>
 
-<footer class="footer">
-	<div class="container">
-		<div class="footer-content">
-			<div class="footer-section">
-				<img src="/images/logos/Logo_Color Vertical.png" alt="MedPre Logo" class="footer-logo" />
-				<p>Tu salud, nuestra prioridad</p>
-			</div>
-			
-			<div class="footer-section">
-				<h3>Contacto</h3>
-				<div class="contact-info">
-					<p>
-						<img src="/icons/misc/location.svg" alt="Ubicación" class="icon" />
-						Dirección de la empresa
-					</p>
-					<p>
-						<img src="/icons/misc/phone.svg" alt="Teléfono" class="icon" />
-						+1 234 567 890
-					</p>
-					<p>
-						<img src="/icons/misc/email.svg" alt="Email" class="icon" />
-						contacto@medpre.com
-					</p>
-				</div>
-			</div>
-			
-			<div class="footer-section">
-				<h3>Síguenos</h3>
-				<div class="social-links">
-					{#each socialLinks as { name, icon, url }}
-						<a href={url} target="_blank" rel="noopener noreferrer" class="social-link">
-							<img src={icon} alt={name} class="social-icon" />
-						</a>
-					{/each}
-				</div>
+<footer 
+	class="footer-container"
+	in:fade={{duration: 1000, delay: 200}}
+>
+	<div class="footer-content">
+		<div class="footer-section">
+			<img 
+				src="/images/logos/Logo_Color Vertical.png" 
+				alt="Logo Vertical" 
+				class="footer-logo"
+			/>
+		</div>
+
+		<div class="footer-section">
+			<h3>Contacto</h3>
+			<ul>
+				<li>
+					<a href="mailto:contacto@tuempresa.com">
+						<i class="fas fa-envelope"></i>
+						contacto@tuempresa.com
+					</a>
+				</li>
+				<li>
+					<a href="tel:+123456789">
+						<i class="fas fa-phone"></i>
+						+52 (123) 456-789
+					</a>
+				</li>
+				<li>
+					<i class="fas fa-map-marker-alt"></i>
+					Ciudad de México, México
+				</li>
+			</ul>
+		</div>
+
+		<div class="footer-section">
+			<h3>Enlaces Rápidos</h3>
+			<ul>
+				<li><a href="/">Inicio</a></li>
+				<li><a href="/quienes-somos">Quiénes Somos</a></li>
+				<li><a href="/inversion">Inversión</a></li>
+				<li><a href="/contacto">Contacto</a></li>
+			</ul>
+		</div>
+
+		<div class="footer-section">
+			<h3>Síguenos</h3>
+			<div class="social-links">
+				<a href="#" target="_blank" rel="noopener noreferrer">
+					<i class="fab fa-linkedin"></i>
+				</a>
+				<a href="#" target="_blank" rel="noopener noreferrer">
+					<i class="fab fa-facebook"></i>
+				</a>
+				<a href="#" target="_blank" rel="noopener noreferrer">
+					<i class="fab fa-instagram"></i>
+				</a>
 			</div>
 		</div>
-		
-		<div class="footer-bottom">
-			<p>&copy; {new Date().getFullYear()} MedPre. Todos los derechos reservados.</p>
-		</div>
+	</div>
+
+	<div class="footer-bottom">
+		<p>&copy; {year} MedPre. Todos los derechos reservados.</p>
 	</div>
 </footer>
 
 <style>
-	.footer {
-		background: var(--white);
-		padding: 4rem 0 2rem;
-		box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+	.footer-container {
+		background: linear-gradient(to right, #1a1a1a, #2d2d2d);
+		color: #ffffff;
+		padding: 4rem 2rem 1rem 2rem;
+		margin-top: 0;
 	}
 
 	.footer-content {
+		max-width: 1200px;
+		margin: 0 auto;
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-		gap: 2rem;
-		margin-bottom: 2rem;
+			gap: 2rem;
 	}
 
 	.footer-section {
@@ -72,20 +98,47 @@
 
 	.footer-logo {
 		max-width: 200px;
+		height: auto;
 		margin-bottom: 1rem;
 	}
 
-	.contact-info p {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		margin-bottom: 0.5rem;
+	h3 {
+		color: #ffffff;
+		font-size: 1.2rem;
+		margin-bottom: 1.5rem;
+		position: relative;
 	}
 
-	.icon {
-		width: 20px;
-		height: 20px;
-		filter: brightness(0) saturate(100%) invert(47%) sepia(82%) saturate(4462%) hue-rotate(166deg) brightness(95%) contrast(101%);
+	h3::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		bottom: -0.5rem;
+		width: 50px;
+		height: 2px;
+		background: var(--primary-color, #4a90e2);
+	}
+
+	ul {
+		list-style: none;
+		padding: 0;
+	}
+
+	li {
+		margin-bottom: 1rem;
+	}
+
+	a {
+		color: #ffffff;
+		text-decoration: none;
+		transition: color 0.3s ease;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	a:hover {
+		color: var(--primary-color, #4a90e2);
 	}
 
 	.social-links {
@@ -93,50 +146,41 @@
 		gap: 1rem;
 	}
 
-	.social-link {
-		display: flex;
-		align-items: center;
-		justify-content: center;
+	.social-links a {
+		background: rgba(255, 255, 255, 0.1);
 		width: 40px;
 		height: 40px;
 		border-radius: 50%;
-		background: var(--light-bg);
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		transition: all 0.3s ease;
 	}
 
-	.social-link:hover {
-		background: var(--primary-color);
-	}
-
-	.social-icon {
-		width: 20px;
-		height: 20px;
-		filter: brightness(0) saturate(100%) invert(47%) sepia(82%) saturate(4462%) hue-rotate(166deg) brightness(95%) contrast(101%);
-		transition: all 0.3s ease;
-	}
-
-	.social-link:hover .social-icon {
-		filter: brightness(0) saturate(100%) invert(100%);
+	.social-links a:hover {
+		background: var(--primary-color, #4a90e2);
+		transform: translateY(-3px);
 	}
 
 	.footer-bottom {
 		text-align: center;
 		padding-top: 2rem;
-		border-top: 1px solid var(--light-bg);
+		margin-top: 2rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
 	}
 
 	@media (max-width: 768px) {
 		.footer-content {
 			grid-template-columns: 1fr;
+		}
+
+		.footer-section {
 			text-align: center;
 		}
 
-		.footer-logo {
-			margin: 0 auto 1rem;
-		}
-
-		.contact-info p {
-			justify-content: center;
+		h3::after {
+			left: 50%;
+			transform: translateX(-50%);
 		}
 
 		.social-links {

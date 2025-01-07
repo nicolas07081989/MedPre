@@ -12,6 +12,10 @@
 <svelte:head>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
 	<title>MedPre - Medicina de Precisión Ecuador</title>
+	<link 
+		rel="stylesheet" 
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+	/>
 </svelte:head>
 
 <div class="app-wrapper">
@@ -56,11 +60,17 @@
 		display: flex;
 		flex-direction: column;
 		min-height: 100vh;
+		margin: 0;
+		padding: 0;
 	}
 
 	main {
 		flex: 1;
 		margin-top: 80px;
+		margin-bottom: 0;
+		padding-bottom: 0;
+		display: flex;
+		flex-direction: column;
 	}
 
 	.main-nav {
