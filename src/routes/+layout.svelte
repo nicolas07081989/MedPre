@@ -6,7 +6,6 @@
 	import { pageTransition } from '$lib/utils/animations';
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
-	import ChatBot from '$lib/components/ChatBot.svelte';
 </script>
 
 <svelte:head>
@@ -57,7 +56,6 @@
 		<slot />
 	</main>
 	<Footer />
-	<ChatBot />
 </div>
 
 <style>
