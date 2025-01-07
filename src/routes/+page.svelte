@@ -160,7 +160,7 @@
 					</div>
 				</div>
 				<div class="contact-image">
-					<img src="https://images.unsplash.com/photo-1666214280557-f1b5022eb634?q=80" 
+					<img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80" 
 						 alt="Consulta médica"
 						 loading="lazy">
 				</div>
@@ -555,6 +555,9 @@
 		width: 100%;
 		border-radius: 1rem;
 		box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+		object-fit: cover;
+		height: 100%;
+		min-height: 400px;
 	}
 
 	/* Responsive */

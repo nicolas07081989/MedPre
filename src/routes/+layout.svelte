@@ -10,6 +10,10 @@
 </script>
 
 <svelte:head>
+	<!-- Favicon -->
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+	<link rel="shortcut icon" type="image/png" href="/favicon.png">
+
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
 	<title>MedPre - Medicina de Precisión Ecuador</title>
 	<link 
