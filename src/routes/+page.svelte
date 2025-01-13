@@ -190,11 +190,11 @@
 		padding: 0 1.5rem;
 	}
 
-	/* Hero Section ajustado */
+	/* Hero Section base */
 	.hero {
 		position: relative;
 		height: 100vh;
-		min-height: -webkit-fill-available; /* Para iOS */
+		height: 100dvh; /* Dynamic viewport height - mejor soporte en iOS */
 		margin-top: -80px;
 		padding-top: 80px;
 		display: flex;
@@ -204,61 +204,101 @@
 		overflow: hidden;
 	}
 
-	/* Ajustes específicos para iPhone y dispositivos iOS */
+	.hero-background,
+	.hero-overlay {
+		position: absolute;
+		top: -80px;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: 100vh;
+		height: 100dvh;
+	}
+
+	/* Ajustes específicos para iOS */
 	@supports (-webkit-touch-callout: none) {
 		.hero {
 			height: -webkit-fill-available;
 			min-height: 100vh;
+			min-height: 100dvh;
+			padding-bottom: env(safe-area-inset-bottom, 0px);
 		}
 
 		.hero-background,
 		.hero-overlay {
 			height: -webkit-fill-available;
+			min-height: 100vh;
+			min-height: 100dvh;
+		}
+
+		.hero-content {
+			padding-top: env(safe-area-inset-top, 0px);
+			padding-bottom: env(safe-area-inset-bottom, 20px);
+			position: relative;
+			z-index: 1;
 		}
 	}
 
-	/* Ajustes para dispositivos móviles grandes (iPhone 12 Pro Max, 13 Pro Max, 14 Pro Max) */
+	/* Ajustes específicos para iPhone con notch/Dynamic Island */
+	@supports (padding-top: env(safe-area-inset-top)) {
+		.hero {
+			padding-top: max(80px, env(safe-area-inset-top));
+			padding-bottom: env(safe-area-inset-bottom);
+		}
+
+		.hero-background,
+		.hero-overlay {
+			top: calc(-1 * env(safe-area-inset-top, 0px));
+			padding-top: env(safe-area-inset-top, 0px);
+			padding-bottom: env(safe-area-inset-bottom, 0px);
+		}
+	}
+
+	/* Ajustes para iPhone moderno específico */
 	@media only screen 
-	and (device-width: 428px) 
+	and (device-width: 390px) 
+	and (device-height: 844px) 
+	and (-webkit-device-pixel-ratio: 3),
+	(device-width: 428px) 
 	and (device-height: 926px) 
 	and (-webkit-device-pixel-ratio: 3),
-	(device-width: 390px) 
-	and (device-height: 844px) 
+	(device-width: 393px) 
+	and (device-height: 852px) 
 	and (-webkit-device-pixel-ratio: 3) {
 		.hero {
-			height: 100vh;
-			/* Ajuste para la "notch" del iPhone */
-			padding-top: env(safe-area-inset-top, 80px);
-			margin-top: calc(-1 * env(safe-area-inset-top, 80px));
+			min-height: stretch;
+			height: stretch;
 		}
 
-		.hero h1 {
-			font-size: 2.3rem;
-			padding: 0 1rem;
-			margin-top: env(safe-area-inset-top, 0);
-		}
-
-		.hero-subtitle {
-			font-size: 1.1rem;
-			padding: 0 1.5rem;
+		.hero-content {
+			padding-top: max(env(safe-area-inset-top), 60px);
+			margin-top: 0;
 		}
 
 		.hero-stats {
-			padding: 1.5rem 1rem;
-			gap: 1.5rem;
+			margin-top: 1rem;
+			margin-bottom: 1rem;
 		}
 
-		.stat-circle {
-			width: 90px;
-			height: 90px;
+		.hero-buttons {
+			margin-bottom: env(safe-area-inset-bottom, 20px);
+		}
+	}
+
+	/* Ajuste general para dispositivos móviles */
+	@media (max-width: 767px) {
+		.hero {
+			min-height: stretch;
+			height: stretch;
 		}
 
-		.stat-value {
-			font-size: 1.8rem;
-		}
-
-		.stat-label {
-			font-size: 0.9rem;
+		.hero-content {
+			padding: 2rem 0;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			min-height: calc(100vh - 80px);
+			min-height: calc(100dvh - 80px);
 		}
 	}
 
