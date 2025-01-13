@@ -194,7 +194,7 @@
 	.hero {
 		position: relative;
 		height: 100vh;
-		height: 100dvh; /* Dynamic viewport height - mejor soporte en iOS */
+		height: 100dvh;
 		margin-top: -80px;
 		padding-top: 80px;
 		display: flex;
@@ -204,101 +204,98 @@
 		overflow: hidden;
 	}
 
-	.hero-background,
-	.hero-overlay {
-		position: absolute;
-		top: -80px;
+	.hero-background {
+		position: fixed;
+		top: 0;
 		left: 0;
 		right: 0;
 		bottom: 0;
+		width: 100%;
 		height: 100vh;
 		height: 100dvh;
+		background-image: url('https://images.unsplash.com/photo-1579165466741-7f35e4755660?q=80');
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		z-index: -2;
+	}
+
+	.hero-overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		width: 100%;
+		height: 100vh;
+		height: 100dvh;
+		background: linear-gradient(
+			135deg,
+			rgba(28, 61, 110, 0.95) 0%,
+			rgba(0, 196, 180, 0.85) 100%
+		);
+		z-index: -1;
+	}
+
+	.hero-content {
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		padding: 2rem 0;
+		margin-top: auto;
+		margin-bottom: auto;
 	}
 
 	/* Ajustes específicos para iOS */
 	@supports (-webkit-touch-callout: none) {
 		.hero {
-			height: -webkit-fill-available;
-			min-height: 100vh;
-			min-height: 100dvh;
-			padding-bottom: env(safe-area-inset-bottom, 0px);
+			min-height: -webkit-fill-available;
 		}
 
 		.hero-background,
 		.hero-overlay {
+			position: absolute;
 			height: -webkit-fill-available;
-			min-height: 100vh;
-			min-height: 100dvh;
+			top: -80px;
 		}
 
 		.hero-content {
-			padding-top: env(safe-area-inset-top, 0px);
 			padding-bottom: env(safe-area-inset-bottom, 20px);
-			position: relative;
-			z-index: 1;
 		}
 	}
 
-	/* Ajustes específicos para iPhone con notch/Dynamic Island */
-	@supports (padding-top: env(safe-area-inset-top)) {
-		.hero {
-			padding-top: max(80px, env(safe-area-inset-top));
-			padding-bottom: env(safe-area-inset-bottom);
-		}
-
-		.hero-background,
-		.hero-overlay {
-			top: calc(-1 * env(safe-area-inset-top, 0px));
-			padding-top: env(safe-area-inset-top, 0px);
-			padding-bottom: env(safe-area-inset-bottom, 0px);
-		}
-	}
-
-	/* Ajustes para iPhone moderno específico */
-	@media only screen 
-	and (device-width: 390px) 
-	and (device-height: 844px) 
-	and (-webkit-device-pixel-ratio: 3),
-	(device-width: 428px) 
-	and (device-height: 926px) 
-	and (-webkit-device-pixel-ratio: 3),
-	(device-width: 393px) 
-	and (device-height: 852px) 
-	and (-webkit-device-pixel-ratio: 3) {
-		.hero {
-			min-height: stretch;
-			height: stretch;
-		}
-
-		.hero-content {
-			padding-top: max(env(safe-area-inset-top), 60px);
-			margin-top: 0;
-		}
-
-		.hero-stats {
-			margin-top: 1rem;
-			margin-bottom: 1rem;
-		}
-
-		.hero-buttons {
-			margin-bottom: env(safe-area-inset-bottom, 20px);
-		}
-	}
-
-	/* Ajuste general para dispositivos móviles */
+	/* Ajustes para móviles */
 	@media (max-width: 767px) {
 		.hero {
-			min-height: stretch;
-			height: stretch;
+			min-height: 100vh;
+			min-height: 100dvh;
 		}
 
 		.hero-content {
-			padding: 2rem 0;
+			padding: 1rem 0;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			min-height: calc(100vh - 80px);
 			min-height: calc(100dvh - 80px);
+		}
+
+		.hero-stats {
+			margin: 2rem 0;
+		}
+	}
+
+	/* Ajustes para iPhone */
+	@supports (padding: env(safe-area-inset-top)) {
+		.hero-background,
+		.hero-overlay {
+			padding-top: env(safe-area-inset-top);
+			padding-bottom: env(safe-area-inset-bottom);
+		}
+
+		.hero-content {
+			padding-top: max(env(safe-area-inset-top), 1rem);
+			padding-bottom: max(env(safe-area-inset-bottom), 1rem);
 		}
 	}
 
@@ -379,33 +376,6 @@
 			padding-left: env(safe-area-inset-left);
 			padding-right: env(safe-area-inset-right);
 		}
-	}
-
-	.hero-background {
-		position: absolute;
-		top: -80px;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background-image: url('https://images.unsplash.com/photo-1579165466741-7f35e4755660?q=80');
-		background-size: cover;
-		background-position: center;
-		background-repeat: no-repeat;
-		z-index: -2;
-	}
-
-	.hero-overlay {
-		position: absolute;
-		top: -80px;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: linear-gradient(
-			135deg,
-			rgba(28, 61, 110, 0.95) 0%,
-			rgba(0, 196, 180, 0.85) 100%
-		);
-		z-index: -1;
 	}
 
 	.hero h1 {
