@@ -5,37 +5,34 @@
 /* Importa tus fuentes */
 @import url("https://fonts.cdnfonts.com/css/euclid-circular-a");
 
-/* Variables globales */
 :root {
-  /* Tipografía */
-  --font-primary: "Euclid Circular A", -apple-system, BlinkMacSystemFont,
-    sans-serif;
-  --font-weight-regular: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-
-  /* Tipografía - Tamaños */
-  --font-xs: 0.75rem; /* 12px */
-  --font-sm: 0.875rem; /* 14px */
-  --font-base: 1rem; /* 16px */
-  --font-lg: 1.125rem; /* 18px */
-  --font-xl: 1.25rem; /* 20px */
-  --font-2xl: 1.5rem; /* 24px */
-  --font-3xl: 2rem; /* 32px */
-  --font-4xl: 2.5rem; /* 40px */
-  --font-5xl: 3rem; /* 48px */
-  --font-6xl: 3.75rem; /* 60px */
+  /* Colores principales */
+  --color-primary: #1C3D6E;
+  --color-secondary: #00C4B4;
+  
+  /* Gradientes */
+  --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  --gradient-overlay: linear-gradient(135deg, rgba(28, 61, 110, 0.95) 0%, rgba(0, 196, 180, 0.85) 100%);
+  
+  /* Transiciones */
+  --transition-default: all 0.3s ease;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* Estilos base mínimos que no interfieren con Tailwind */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: var(--font-primary);
-  line-height: 1.6;
-  color: var(--text-color);
+  font-family: "Euclid Circular A", -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Utilidades específicas que no provee Tailwind */
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }

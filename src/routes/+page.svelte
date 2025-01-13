@@ -9,6 +9,9 @@
 	<meta property="og:title" content="MedPre - Medicina de Precisión Ecuador" />
 	<meta property="og:description" content="Evaluación precisa de nódulos tiroideos mediante tecnología molecular avanzada" />
 	<meta property="og:image" content="https://images.unsplash.com/photo-1579165466741-7f35e4755660" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://medpre.vercel.app" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </svelte:head>
 
@@ -206,7 +209,7 @@
 		left: 0;
 		right: 0;
 		bottom: 0;
-		background-image: url('/images/hero/hero-bg.jpg');
+		background-image: url('https://images.unsplash.com/photo-1579165466741-7f35e4755660?q=80');
 		background-size: cover;
 		background-position: center;
 		background-repeat: no-repeat;
