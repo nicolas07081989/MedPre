@@ -58,13 +58,28 @@
 		<div class="footer-section">
 			<h3>Síguenos</h3>
 			<div class="social-links">
-				<a href="#" target="_blank" rel="noopener noreferrer">
+				<a 
+					href="https://linkedin.com/company/tu-empresa" 
+					target="_blank" 
+					rel="noopener noreferrer"
+					aria-label="Síguenos en LinkedIn"
+				>
 					<i class="fab fa-linkedin"></i>
 				</a>
-				<a href="#" target="_blank" rel="noopener noreferrer">
+				<a 
+					href="https://facebook.com/tu-pagina" 
+					target="_blank" 
+					rel="noopener noreferrer"
+					aria-label="Síguenos en Facebook"
+				>
 					<i class="fab fa-facebook"></i>
 				</a>
-				<a href="#" target="_blank" rel="noopener noreferrer">
+				<a 
+					href="https://instagram.com/tu-cuenta" 
+					target="_blank" 
+					rel="noopener noreferrer"
+					aria-label="Síguenos en Instagram"
+				>
 					<i class="fab fa-instagram"></i>
 				</a>
 			</div>
