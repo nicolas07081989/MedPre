@@ -205,90 +205,80 @@
 	}
 
 	.hero-background {
-		position: fixed;
+		position: absolute;
 		top: 0;
 		left: 0;
 		right: 0;
 		bottom: 0;
 		width: 100%;
-		height: 100vh;
-		height: 100dvh;
+		height: 100%;
 		background-image: url('https://images.unsplash.com/photo-1579165466741-7f35e4755660?q=80');
 		background-size: cover;
 		background-position: center;
 		background-repeat: no-repeat;
-		z-index: -2;
+		z-index: 1;
 	}
 
 	.hero-overlay {
-		position: fixed;
+		position: absolute;
 		top: 0;
 		left: 0;
 		right: 0;
 		bottom: 0;
 		width: 100%;
-		height: 100vh;
-		height: 100dvh;
+		height: 100%;
 		background: linear-gradient(
 			135deg,
 			rgba(28, 61, 110, 0.98) 0%,
 			rgba(0, 196, 180, 0.95) 100%
 		);
-		z-index: -1;
+		z-index: 2;
 	}
 
 	.hero-content {
 		position: relative;
-		z-index: 10;
+		z-index: 3;
 		width: 100%;
 		padding: 2rem 0;
-		margin-top: auto;
-		margin-bottom: auto;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
 	}
 
-	/* Ajustes específicos para iPhone moderno */
+	/* El resto de la página necesita estar por encima del hero */
+	main > *:not(.hero) {
+		position: relative;
+		z-index: 4;
+		background: var(--color-white);
+	}
+
+	/* Ajustes específicos para iOS */
 	@supports (-webkit-touch-callout: none) {
 		.hero {
 			min-height: -webkit-fill-available;
 			height: 100vh;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
 		}
 
 		.hero-background,
 		.hero-overlay {
-			position: fixed;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			height: 100vh;
-			min-height: -webkit-fill-available;
-			z-index: 1;
+			height: 100%;
 		}
 
 		.hero-content {
-			position: relative;
-			z-index: 10;
 			padding: env(safe-area-inset-top) 1rem env(safe-area-inset-bottom);
-			min-height: auto;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
+		}
+	}
+
+	/* Ajustes para iPhone moderno */
+	@media only screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3),
+		   only screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3),
+		   only screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3),
+		   only screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) {
+		.hero {
+			height: 100vh;
+			height: 100dvh;
 		}
 
-		.hero-buttons {
-			position: relative;
-			z-index: 10;
-			width: 100%;
-			padding: 0 1.5rem;
-			margin-top: 2rem;
-			margin-bottom: env(safe-area-inset-bottom, 1rem);
+		.hero-content {
+			padding-top: max(env(safe-area-inset-top), 2rem);
+			padding-bottom: env(safe-area-inset-bottom, 2rem);
 		}
 	}
 
@@ -548,7 +538,7 @@
 	/* Buttons Mejorados */
 	.btn {
 		position: relative;
-		z-index: 10;
+		z-index: 3;
 		display: inline-flex;
 		align-items: center;
 		gap: 0.75rem;
@@ -899,7 +889,7 @@
 	/* Botones del Hero */
 	.hero-buttons {
 		position: relative;
-		z-index: 10;
+		z-index: 3;
 		display: flex;
 		gap: 1.5rem;
 		justify-content: center;
@@ -910,7 +900,7 @@
 
 	.btn {
 		position: relative;
-		z-index: 10;
+		z-index: 3;
 		display: inline-flex;
 		align-items: center;
 		gap: 0.75rem;
