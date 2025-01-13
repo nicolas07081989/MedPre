@@ -185,21 +185,132 @@
 	}
 
 	@media (max-width: 768px) {
+		.footer-container {
+			padding: 3rem 1rem 1rem;
+		}
+
 		.footer-content {
 			grid-template-columns: 1fr;
+			text-align: center;
+			gap: 2.5rem;
 		}
 
 		.footer-section {
-			text-align: center;
+			padding: 0;
+		}
+
+		.footer-logo {
+			max-width: 180px;
+			margin: 0 auto 1rem;
+		}
+
+		h3 {
+			font-size: 1.4rem;
+			margin-bottom: 1.2rem;
 		}
 
 		h3::after {
 			left: 50%;
 			transform: translateX(-50%);
+			width: 60px;
+		}
+
+		ul {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 0.8rem;
+		}
+
+		li {
+			margin-bottom: 0;
+		}
+
+		a {
+			font-size: 1.1rem;
+			padding: 0.5rem;
 		}
 
 		.social-links {
 			justify-content: center;
+			gap: 1.5rem;
 		}
+
+		.social-links a {
+			width: 45px;
+			height: 45px;
+			font-size: 1.2rem;
+		}
+
+		.footer-bottom {
+			margin-top: 2rem;
+			padding-top: 1.5rem;
+		}
+
+		.footer-bottom p {
+			font-size: 0.9rem;
+		}
+	}
+
+	/* Mejoras para tablets */
+	@media (min-width: 769px) and (max-width: 1024px) {
+		.footer-content {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 3rem;
+		}
+
+		.footer-section:first-child {
+			grid-column: 1 / -1;
+			text-align: center;
+		}
+
+		.footer-logo {
+			margin: 0 auto;
+		}
+	}
+
+	/* Mejoras generales de interacción */
+	.footer-section ul li a {
+		position: relative;
+		padding: 0.3rem 0;
+	}
+
+	.footer-section ul li a::after {
+		content: '';
+		position: absolute;
+		width: 0;
+		height: 2px;
+		bottom: 0;
+		left: 50%;
+		background: var(--primary-color, #4a90e2);
+		transition: all 0.3s ease;
+		transform: translateX(-50%);
+	}
+
+	.footer-section ul li a:hover::after {
+		width: 100%;
+	}
+
+	.social-links a {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.social-links a::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: var(--primary-color, #4a90e2);
+		transform: scale(0);
+		transition: transform 0.3s ease;
+		border-radius: 50%;
+		z-index: -1;
+	}
+
+	.social-links a:hover::before {
+		transform: scale(1);
 	}
 </style> 

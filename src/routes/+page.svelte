@@ -4,6 +4,11 @@
 
 <svelte:head>
 	<title>MedPre - Medicina de Precisión Ecuador</title>
+	<meta name="description" content="Evaluación precisa de nódulos tiroideos mediante tecnología molecular avanzada en Ecuador" />
+	<meta name="keywords" content="medicina de precisión, nódulos tiroideos, diagnóstico molecular, Ecuador" />
+	<meta property="og:title" content="MedPre - Medicina de Precisión Ecuador" />
+	<meta property="og:description" content="Evaluación precisa de nódulos tiroideos mediante tecnología molecular avanzada" />
+	<meta property="og:image" content="/images/og-image.jpg" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </svelte:head>
 
@@ -201,7 +206,7 @@
 		left: 0;
 		right: 0;
 		bottom: 0;
-		background-image: url('https://images.unsplash.com/photo-1579165466741-7f35e4755660?q=80');
+		background-image: url('/images/hero/hero-bg.jpg');
 		background-size: cover;
 		background-position: center;
 		background-repeat: no-repeat;
@@ -757,6 +762,98 @@
 		.btn {
 			width: 100%;
 			justify-content: center;
+		}
+	}
+
+	/* Mejoras responsive para el hero */
+	@media (max-width: 768px) {
+		.hero h1 {
+			font-size: 2.8rem;
+			padding: 0 1rem;
+		}
+
+		.hero-subtitle {
+			font-size: 1.2rem;
+			padding: 0 1rem;
+			margin-bottom: 2rem;
+		}
+
+		.hero-stats {
+			flex-direction: row;
+			gap: 1.5rem;
+			padding: 0 1rem;
+		}
+
+		.stat-circle {
+			width: 100px;
+			height: 100px;
+		}
+
+		.stat-value {
+			font-size: 2rem;
+		}
+
+		.stat-label {
+			font-size: 1rem;
+		}
+
+		.hero-buttons {
+			flex-direction: column;
+			padding: 0 2rem;
+		}
+
+		.btn {
+			width: 100%;
+			margin-bottom: 0.5rem;
+		}
+	}
+
+	/* Mejoras para tablets */
+	@media (min-width: 769px) and (max-width: 1024px) {
+		.hero h1 {
+			font-size: 3.5rem;
+		}
+
+		.hero-subtitle {
+			font-size: 1.5rem;
+		}
+	}
+
+	/* Mejoras para secciones de contenido en móvil */
+	@media (max-width: 768px) {
+		.process-grid,
+		.benefits-grid {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+			padding: 0 1rem;
+		}
+
+		.process-step,
+		.benefit-card {
+			padding: 1.5rem;
+		}
+
+		section h2 {
+			font-size: 2.2rem;
+			margin-bottom: 2rem;
+		}
+
+		.contact-content {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+			padding: 0 1rem;
+		}
+
+		.contact-methods {
+			gap: 1rem;
+		}
+
+		.contact-method {
+			padding: 0.8rem;
+		}
+
+		.contact-method i {
+			font-size: 1.5rem;
 		}
 	}
 </style>
