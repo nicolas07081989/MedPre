@@ -8,14 +8,14 @@
 	<meta name="keywords" content="medicina de precisión, nódulos tiroideos, diagnóstico molecular, Ecuador" />
 	<meta property="og:title" content="MedPre - Medicina de Precisión Ecuador" />
 	<meta property="og:description" content="Evaluación precisa de nódulos tiroideos mediante tecnología molecular avanzada" />
-	<meta property="og:image" content="/images/og-image.jpg" />
+	<meta property="og:image" content="https://images.unsplash.com/photo-1579165466741-7f35e4755660" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </svelte:head>
 
 <main>
 	<!-- Hero Section Simplificado -->
 	<section class="hero">
-		<div class="hero-background"></div>
+		<div class="hero-background" style="background-image: url('https://images.unsplash.com/photo-1579165466741-7f35e4755660?q=80')"></div>
 		<div class="hero-overlay"></div>
 		<div class="container">
 			<div class="hero-content" in:fade={{ duration: 1000 }}>
@@ -225,14 +225,6 @@
 			rgba(0, 196, 180, 0.85) 100%
 		);
 		z-index: -1;
-	}
-
-	.hero-wave {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		width: 100%;
-		line-height: 0;
 	}
 
 	.hero h1 {
