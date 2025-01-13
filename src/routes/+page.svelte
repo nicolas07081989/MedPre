@@ -851,4 +851,90 @@
 			font-size: 1.5rem;
 		}
 	}
+
+	/* Ajustes para tablet */
+	@media (min-width: 768px) and (max-width: 1024px) {
+		.hero h1 {
+			font-size: 3.2rem;
+			padding: 0 2rem;
+			margin-bottom: 1.5rem;
+		}
+
+		.hero-subtitle {
+			font-size: 1.4rem;
+			padding: 0 2rem;
+			margin-bottom: 2rem;
+		}
+
+		.hero-stats {
+			flex-direction: row;
+			justify-content: center;
+			gap: 3rem;
+			padding: 2rem;
+		}
+
+		.stat-circle {
+			width: 110px;
+			height: 110px;
+		}
+
+		.hero-buttons {
+			flex-direction: row;
+			justify-content: center;
+			gap: 1.5rem;
+			padding: 0 2rem;
+		}
+
+		.process-grid,
+		.benefits-grid {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 2rem;
+			padding: 0 2rem;
+		}
+	}
+
+	/* Ajustes para móvil */
+	@media (max-width: 767px) {
+		.hero h1 {
+			font-size: 2.5rem;
+			padding: 0 1rem;
+			margin-bottom: 1rem;
+		}
+
+		.hero-subtitle {
+			font-size: 1.2rem;
+			padding: 0 1rem;
+			margin-bottom: 2rem;
+		}
+
+		.hero-stats {
+			flex-direction: column;
+			align-items: center;
+			gap: 2rem;
+			padding: 1rem;
+		}
+
+		.hero-buttons {
+			flex-direction: column;
+			padding: 0 1.5rem;
+			gap: 1rem;
+		}
+
+		.btn {
+			width: 100%;
+			justify-content: center;
+		}
+
+		.process-grid,
+		.benefits-grid {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+			padding: 0 1rem;
+		}
+
+		section h2 {
+			font-size: 2rem;
+			padding: 0 1rem;
+		}
+	}
 </style>

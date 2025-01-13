@@ -345,4 +345,53 @@
 	.social-links a:hover::before {
 		transform: scale(1);
 	}
+
+	/* Ajustes responsive para tablet */
+	@media (min-width: 768px) and (max-width: 1024px) {
+		.footer-content {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 2rem;
+			padding: 0 1rem;
+		}
+
+		.footer-section {
+			text-align: center;
+		}
+
+		.footer-section:first-child {
+			grid-column: 1 / -1;
+		}
+
+		.social-links {
+			justify-content: center;
+		}
+	}
+
+	/* Ajustes responsive para móvil */
+	@media (max-width: 767px) {
+		.footer-content {
+			grid-template-columns: 1fr;
+			text-align: center;
+			gap: 2rem;
+			padding: 0 1rem;
+		}
+
+		.footer-section {
+			padding: 0;
+		}
+
+		.social-links {
+			justify-content: center;
+			gap: 2rem;
+		}
+
+		.social-links a {
+			width: 50px;
+			height: 50px;
+		}
+
+		.social-links a i {
+			font-size: 1.8rem;
+		}
+	}
 </style> 
