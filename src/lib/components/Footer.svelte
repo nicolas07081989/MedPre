@@ -150,23 +150,63 @@
 
 	.social-links {
 		display: flex;
-		gap: 1rem;
+		gap: 1.5rem;
 	}
 
 	.social-links a {
 		background: rgba(255, 255, 255, 0.1);
-		width: 40px;
-		height: 40px;
+		width: 45px;
+		height: 45px;
 		border-radius: 50%;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		transition: all 0.3s ease;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.social-links a i {
+		font-size: 1.5rem;
+		position: relative;
+		z-index: 2;
+		transition: all 0.3s ease;
+	}
+
+	.social-links a::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: var(--gradient-primary);
+		opacity: 0;
+		transition: all 0.3s ease;
+		z-index: 1;
 	}
 
 	.social-links a:hover {
-		background: var(--primary-color, #4a90e2);
-		transform: translateY(-3px);
+		transform: translateY(-5px);
+		box-shadow: 0 5px 15px rgba(0, 196, 180, 0.3);
+	}
+
+	.social-links a:hover::before {
+		opacity: 1;
+	}
+
+	.social-links a:hover i {
+		color: #ffffff;
+		transform: scale(1.2);
+	}
+
+	/* Estilos específicos para cada red social */
+	.social-links a:nth-child(1):hover {
+		box-shadow: 0 5px 15px rgba(66, 103, 178, 0.4); /* Facebook blue */
+	}
+
+	.social-links a:nth-child(2):hover {
+		box-shadow: 0 5px 15px rgba(225, 48, 108, 0.4); /* Instagram gradient */
 	}
 
 	.footer-bottom {
