@@ -239,33 +239,56 @@
 
 	.hero-content {
 		position: relative;
-		z-index: 1;
+		z-index: 10;
 		width: 100%;
 		padding: 2rem 0;
 		margin-top: auto;
 		margin-bottom: auto;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 
 	/* Ajustes específicos para iPhone moderno */
 	@supports (-webkit-touch-callout: none) {
 		.hero {
 			min-height: -webkit-fill-available;
-			padding-top: env(safe-area-inset-top, 80px);
+			height: 100vh;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
 		}
 
 		.hero-background,
 		.hero-overlay {
-			position: absolute;
-			height: calc(100vh + env(safe-area-inset-top) + env(safe-area-inset-bottom));
-			top: calc(-1 * env(safe-area-inset-top, 0px));
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			height: 100vh;
+			min-height: -webkit-fill-available;
+			z-index: 1;
 		}
 
 		.hero-content {
 			position: relative;
-			z-index: 2;
-			padding-top: max(2rem, env(safe-area-inset-top));
-			padding-bottom: max(2rem, env(safe-area-inset-bottom));
-			min-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+			z-index: 10;
+			padding: env(safe-area-inset-top) 1rem env(safe-area-inset-bottom);
+			min-height: auto;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.hero-buttons {
+			position: relative;
+			z-index: 10;
+			width: 100%;
+			padding: 0 1.5rem;
+			margin-top: 2rem;
+			margin-bottom: env(safe-area-inset-bottom, 1rem);
 		}
 	}
 
@@ -274,36 +297,18 @@
 		   only screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3),
 		   only screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3),
 		   only screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) {
-		.hero {
-			padding-top: env(safe-area-inset-top, 47px);
-		}
-
-		.hero-background,
-		.hero-overlay {
-			top: 0;
-			height: calc(100vh + env(safe-area-inset-top));
-		}
-
 		.hero-content {
-			padding-top: calc(env(safe-area-inset-top) + 1rem);
-			margin-top: 0;
-			min-height: calc(100vh - env(safe-area-inset-top));
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
+			padding-top: max(env(safe-area-inset-top), 2rem);
+			padding-bottom: env(safe-area-inset-bottom, 2rem);
 		}
 
-		.hero-stats {
-			margin: 2rem 0;
+		.hero-buttons {
+			margin-bottom: max(env(safe-area-inset-bottom), 2rem);
 		}
 
-		.stat-circle {
-			width: 90px;
-			height: 90px;
-		}
-
-		.stat-value {
-			font-size: 1.8rem;
+		.btn {
+			position: relative;
+			z-index: 10;
 		}
 	}
 
@@ -542,9 +547,11 @@
 
 	/* Buttons Mejorados */
 	.btn {
+		position: relative;
+		z-index: 10;
 		display: inline-flex;
 		align-items: center;
-			gap: 0.5rem;
+		gap: 0.75rem;
 		padding: 1rem 2rem;
 		border-radius: 0.5rem;
 		font-weight: 600;
@@ -557,24 +564,22 @@
 	}
 
 	.btn-primary {
-		background: linear-gradient(135deg, #1C3D6E 0%, #00C4B4 100%);
+		background: var(--color-secondary);
 		color: var(--color-white);
-		box-shadow: 0 4px 6px rgba(28, 61, 110, 0.2);
+		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 		border: none;
 	}
 
 	.btn-primary:hover {
-		background: linear-gradient(135deg, #00C4B4 0%, #1C3D6E 100%);
+		background: var(--color-white);
+		color: var(--color-primary);
 		transform: translateY(-2px);
-		box-shadow: 0 6px 12px rgba(28, 61, 110, 0.25);
 	}
 
 	.btn-outline {
 		border: 2px solid var(--color-white);
 		color: var(--color-white);
-		position: relative;
-		overflow: hidden;
-		z-index: 1;
+		background: transparent;
 	}
 
 	.btn-outline::before {
@@ -893,13 +898,19 @@
 
 	/* Botones del Hero */
 	.hero-buttons {
+		position: relative;
+		z-index: 10;
 		display: flex;
 		gap: 1.5rem;
 		justify-content: center;
-		margin-top: 3rem;
+		margin-top: 2rem;
+		width: 100%;
+		padding: 0 1.5rem;
 	}
 
 	.btn {
+		position: relative;
+		z-index: 10;
 		display: inline-flex;
 		align-items: center;
 		gap: 0.75rem;
@@ -930,6 +941,7 @@
 	.btn-outline {
 		border: 2px solid var(--color-white);
 		color: var(--color-white);
+		background: transparent;
 	}
 
 	.btn-outline:hover {
