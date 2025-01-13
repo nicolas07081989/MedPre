@@ -703,16 +703,45 @@
 
 	/* Contacto profesional */
 	.contact {
-		background: linear-gradient(135deg, #1C3D6E, #00C4B4);
+		position: relative;
 		padding: 6rem 0;
-		color: white;
+		background: linear-gradient(135deg, #1C3D6E 0%, #00C4B4 100%);
+		color: var(--color-white);
+		overflow: hidden;
+	}
+
+	.contact::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80');
+		background-size: cover;
+		background-position: center;
+		opacity: 0.1;
+		z-index: 1;
 	}
 
 	.contact-content {
+		position: relative;
+		z-index: 2;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		gap: 4rem;
 		align-items: center;
+	}
+
+	.contact-info {
+		position: relative;
+		z-index: 2;
+	}
+
+	.contact-info h2 {
+		font-size: 2.5rem;
+		margin-bottom: 1.5rem;
+		color: var(--color-white);
 	}
 
 	.contact-methods {
@@ -725,41 +754,70 @@
 	.contact-method {
 		display: flex;
 		align-items: center;
-		gap: 1rem;
-		padding: 1rem;
+		gap: 1.5rem;
+		padding: 1.5rem;
 		background: rgba(255, 255, 255, 0.1);
-		border-radius: 0.5rem;
-		color: white;
-		text-decoration: none;
+		border-radius: 1rem;
 		transition: all 0.3s ease;
+		text-decoration: none;
+		color: var(--color-white);
 	}
 
 	.contact-method:hover {
 		background: rgba(255, 255, 255, 0.2);
-		transform: translateX(5px);
+		transform: translateY(-3px);
 	}
 
 	.contact-method i {
 		font-size: 2rem;
+		color: var(--color-secondary);
+	}
+
+	.contact-method h4 {
+		font-size: 1.2rem;
+		margin: 0;
+		color: var(--color-white);
+	}
+
+	.contact-method span {
+		font-size: 1rem;
+		opacity: 0.9;
+	}
+
+	.contact-image {
+		position: relative;
+		z-index: 2;
 	}
 
 	.contact-image img {
 		width: 100%;
+		height: auto;
 		border-radius: 1rem;
-		box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-		object-fit: cover;
-		height: 100%;
-		min-height: 400px;
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 	}
 
-	/* Responsive */
+	/* Ajustes responsive para la sección de contacto */
 	@media (max-width: 768px) {
+		.contact {
+			padding: 4rem 0;
+		}
+
 		.contact-content {
 			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+
+		.contact-info h2 {
+			font-size: 2rem;
+			text-align: center;
+		}
+
+		.contact-info p {
+			text-align: center;
 		}
 
 		.contact-image {
-			display: none;
+			display: none; /* Ocultamos la imagen en móvil */
 		}
 	}
 
