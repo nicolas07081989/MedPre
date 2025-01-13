@@ -194,6 +194,7 @@
 	.hero {
 		position: relative;
 		height: 100vh;
+		min-height: -webkit-fill-available; /* Para iOS */
 		margin-top: -80px;
 		padding-top: 80px;
 		display: flex;
@@ -201,6 +202,143 @@
 		color: var(--color-white);
 		text-align: center;
 		overflow: hidden;
+	}
+
+	/* Ajustes específicos para iPhone y dispositivos iOS */
+	@supports (-webkit-touch-callout: none) {
+		.hero {
+			height: -webkit-fill-available;
+			min-height: 100vh;
+		}
+
+		.hero-background,
+		.hero-overlay {
+			height: -webkit-fill-available;
+		}
+	}
+
+	/* Ajustes para dispositivos móviles grandes (iPhone 12 Pro Max, 13 Pro Max, 14 Pro Max) */
+	@media only screen 
+	and (device-width: 428px) 
+	and (device-height: 926px) 
+	and (-webkit-device-pixel-ratio: 3),
+	(device-width: 390px) 
+	and (device-height: 844px) 
+	and (-webkit-device-pixel-ratio: 3) {
+		.hero {
+			height: 100vh;
+			/* Ajuste para la "notch" del iPhone */
+			padding-top: env(safe-area-inset-top, 80px);
+			margin-top: calc(-1 * env(safe-area-inset-top, 80px));
+		}
+
+		.hero h1 {
+			font-size: 2.3rem;
+			padding: 0 1rem;
+			margin-top: env(safe-area-inset-top, 0);
+		}
+
+		.hero-subtitle {
+			font-size: 1.1rem;
+			padding: 0 1.5rem;
+		}
+
+		.hero-stats {
+			padding: 1.5rem 1rem;
+			gap: 1.5rem;
+		}
+
+		.stat-circle {
+			width: 90px;
+			height: 90px;
+		}
+
+		.stat-value {
+			font-size: 1.8rem;
+		}
+
+		.stat-label {
+			font-size: 0.9rem;
+		}
+	}
+
+	/* Ajustes generales para móviles */
+	@media (max-width: 767px) {
+		.hero {
+			min-height: 100vh;
+			height: auto;
+			padding-bottom: 2rem;
+		}
+
+		.hero-content {
+			padding: 2rem 0;
+		}
+
+		.hero h1 {
+			font-size: 2.2rem;
+			line-height: 1.2;
+			margin-bottom: 1rem;
+			padding: 0 1rem;
+		}
+
+		.hero-subtitle {
+			font-size: 1.1rem;
+			line-height: 1.4;
+			padding: 0 1.2rem;
+			margin-bottom: 1.5rem;
+		}
+
+		.hero-stats {
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: 1.5rem;
+			padding: 1rem;
+		}
+
+		.hero-buttons {
+			flex-direction: column;
+			padding: 0 1.5rem;
+			gap: 0.8rem;
+		}
+
+		.btn {
+			padding: 0.8rem 1.5rem;
+			font-size: 1rem;
+		}
+	}
+
+	/* Ajustes para tablets */
+	@media (min-width: 768px) and (max-width: 1024px) {
+		.hero h1 {
+			font-size: 3rem;
+			padding: 0 2rem;
+		}
+
+		.hero-subtitle {
+			font-size: 1.3rem;
+			padding: 0 3rem;
+		}
+
+		.hero-stats {
+			justify-content: center;
+			gap: 2.5rem;
+			padding: 2rem;
+		}
+
+		.stat-circle {
+			width: 100px;
+			height: 100px;
+		}
+	}
+
+	/* Ajustes para notch y diseños con recortes */
+	@supports (padding-top: env(safe-area-inset-top)) {
+		.hero {
+			padding-top: max(80px, env(safe-area-inset-top));
+			padding-left: env(safe-area-inset-left);
+			padding-right: env(safe-area-inset-right);
+		}
 	}
 
 	.hero-background {
