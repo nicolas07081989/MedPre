@@ -20,6 +20,8 @@
 				src="/images/logos/Logo_Blanco Vertical.png" 
 				alt="MedPre Logo" 
 				class="footer-logo"
+				loading="lazy"
+				onerror="this.style.display='none'"
 			/>
 		</div>
 
@@ -109,6 +111,7 @@
 		margin-bottom: 1rem;
 		filter: brightness(1);
 		opacity: 0.95;
+		display: block;
 	}
 
 	h3 {
