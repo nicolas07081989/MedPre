@@ -17,8 +17,8 @@
 	<div class="footer-content">
 		<div class="footer-section">
 			<img 
-				src="/images/logos/Logo_Color Vertical.png" 
-				alt="Logo Vertical" 
+				src="/images/logos/Logo_Blanco Vertical.png" 
+				alt="MedPre Logo" 
 				class="footer-logo"
 			/>
 		</div>
@@ -107,6 +107,8 @@
 		max-width: 200px;
 		height: auto;
 		margin-bottom: 1rem;
+		filter: brightness(1);
+		opacity: 0.95;
 	}
 
 	h3 {
