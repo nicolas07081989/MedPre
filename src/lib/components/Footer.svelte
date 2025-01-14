@@ -10,7 +10,8 @@
 		isVisible = true;
 	});
 
-	function handleError() {
+	function handleError(e) {
+		console.log('Error cargando el logo:', e);
 		logoVisible = false;
 	}
 </script>
@@ -23,7 +24,7 @@
 		<div class="footer-section">
 			{#if logoVisible}
 				<img 
-					src="/images/logos/Logo_Blanco_Vertical.png" 
+					src="/images/logos/@Logo_Blanco Vertical .png" 
 					alt="MedPre Logo" 
 					class="footer-logo"
 					loading="lazy"
