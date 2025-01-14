@@ -4,16 +4,10 @@
 
 	let year = new Date().getFullYear();
 	let isVisible = false;
-	let logoVisible = true;
 
 	onMount(() => {
 		isVisible = true;
 	});
-
-	function handleError(e) {
-		console.log('Error cargando el logo:', e);
-		logoVisible = false;
-	}
 </script>
 
 <footer 
@@ -21,16 +15,13 @@
 	in:fade={{duration: 1000, delay: 200}}
 >
 	<div class="footer-content">
-		<div class="footer-section">
-			{#if logoVisible}
-				<img 
-					src="/images/logos/@Logo_Blanco Vertical .png" 
-					alt="MedPre Logo" 
-					class="footer-logo"
-					loading="lazy"
-					on:error={handleError}
-				/>
-			{/if}
+		<!-- Logo Section -->
+		<div class="footer-section logo-section">
+			<img 
+				src="/Logo_Blanco Vertical .png"
+				alt="MedPre Logo" 
+				class="footer-logo"
+			/>
 		</div>
 
 		<div class="footer-section">
@@ -111,15 +102,6 @@
 
 	.footer-section {
 		padding: 1rem;
-	}
-
-	.footer-logo {
-		max-width: 200px;
-		height: auto;
-		margin: 0 auto 1rem;
-		filter: brightness(1);
-		opacity: 1;
-		display: block;
 	}
 
 	h3 {
@@ -244,11 +226,6 @@
 			padding: 0;
 		}
 
-		.footer-logo {
-			max-width: 180px;
-			margin: 0 auto 1rem;
-		}
-
 		h3 {
 			font-size: 1.4rem;
 			margin-bottom: 1.2rem;
@@ -307,10 +284,6 @@
 		.footer-section:first-child {
 			grid-column: 1 / -1;
 			text-align: center;
-		}
-
-		.footer-logo {
-			margin: 0 auto;
 		}
 	}
 
@@ -405,6 +378,50 @@
 
 		.social-links a i {
 			font-size: 1.8rem;
+		}
+	}
+
+	.logo-section {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		grid-column: 1 / -1;
+		margin-bottom: 2rem;
+	}
+
+	.footer-logo {
+		width: auto;
+		height: 180px;
+		object-fit: contain;
+		transition: all 0.3s ease;
+	}
+
+	/* Tablets (768px - 1024px) */
+	@media (min-width: 768px) and (max-width: 1024px) {
+		.logo-section {
+			margin-bottom: 1.5rem;
+		}
+
+		.footer-logo {
+			height: 150px;
+		}
+	}
+
+	/* Móviles (menos de 768px) */
+	@media (max-width: 767px) {
+		.logo-section {
+			margin-bottom: 1rem;
+		}
+
+		.footer-logo {
+			height: 120px;
+		}
+	}
+
+	/* Móviles pequeños */
+	@media (max-width: 375px) {
+		.footer-logo {
+			height: 100px;
 		}
 	}
 </style> 
