@@ -4,10 +4,15 @@
 
 	let year = new Date().getFullYear();
 	let isVisible = false;
+	let logoVisible = true;
 
 	onMount(() => {
 		isVisible = true;
 	});
+
+	function handleError() {
+		logoVisible = false;
+	}
 </script>
 
 <footer 
@@ -16,13 +21,15 @@
 >
 	<div class="footer-content">
 		<div class="footer-section">
-			<img 
-				src="/images/logos/Logo_Blanco Vertical.png" 
-				alt="MedPre Logo" 
-				class="footer-logo"
-				loading="lazy"
-				onerror="this.style.display='none'"
-			/>
+			{#if logoVisible}
+				<img 
+					src="/images/logos/Logo_Blanco Vertical.png" 
+					alt="MedPre Logo" 
+					class="footer-logo"
+					loading="lazy"
+					on:error={handleError}
+				/>
+			{/if}
 		</div>
 
 		<div class="footer-section">
@@ -112,6 +119,7 @@
 		filter: brightness(1);
 		opacity: 0.95;
 		display: block;
+		margin: 0 auto;
 	}
 
 	h3 {
