@@ -23,7 +23,7 @@
 		<div class="footer-section">
 			{#if logoVisible}
 				<img 
-					src="/images/logos/Logo_Blanco Vertical.png" 
+					src="/images/logos/Logo_Blanco_Vertical.png" 
 					alt="MedPre Logo" 
 					class="footer-logo"
 					loading="lazy"
@@ -115,11 +115,10 @@
 	.footer-logo {
 		max-width: 200px;
 		height: auto;
-		margin-bottom: 1rem;
+		margin: 0 auto 1rem;
 		filter: brightness(1);
-		opacity: 0.95;
+		opacity: 1;
 		display: block;
-		margin: 0 auto;
 	}
 
 	h3 {
